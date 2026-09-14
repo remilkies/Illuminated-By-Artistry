@@ -1,5 +1,6 @@
 
 <img src="/src/assets/readmeBanner.png" width="100%">
+
 > *Energy. Expression. Artistry.*  
 
 **Illuminated by Artistry** is a passion-project portfolio and booking site built for a tattoo and piercing studio, designed and developed as a surprise gift for the artist behind it. The site showcases her work through a curated gallery, gives visitors an easy way to learn about her services (tattoos, piercings and pricing), and makes booking or reaching out feel as seamless as the art itself.
@@ -74,7 +75,9 @@ This is very much a work in progress, built during a holiday for love of the cra
 <p align="left">
 <!-- <img src="/asabovesobelow/icons/rembyte.png" height="60px"> -->
 <p>
+ 
 Created by **REMByte** <3 <br>
+ 
 *Home of Aesthetic Functionality*
 </p>
 </p>
