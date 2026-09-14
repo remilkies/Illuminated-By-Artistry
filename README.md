@@ -1,5 +1,5 @@
-# ✨ Illuminated by Artistry
 
+<img src="/src/assets/readmeBanner.png" width="100%">
 > *Energy. Expression. Artistry.*  
 
 **Illuminated by Artistry** is a passion-project portfolio and booking site built for a tattoo and piercing studio, designed and developed as a surprise gift for the artist behind it. The site showcases her work through a curated gallery, gives visitors an easy way to learn about her services (tattoos, piercings and pricing), and makes booking or reaching out feel as seamless as the art itself.
