@@ -36,10 +36,62 @@ export default function BookingForm() {
         setStep((prev) => Math.min(prev + 1, 3));
     };
 
-    const handleFinalBooking = (e) => {
+    // 🦇 Yeet data to MongoDB and trigger WhatsApp redirect
+    const handleFinalBooking = async (e) => {
         e.preventDefault();
-        console.log("Submitting final booking to DB & WhatsApp:", formData);
-        // TODO: Trigger WhatsApp redirect link here!
+        console.log("Submitting final booking to DB & WhatsApp...", formData);
+
+        // package text fields + actual files into FormData for multer
+        const data = new FormData();
+        data.append("name", formData.name);
+        data.append("phone", formData.phone);
+        data.append("appointmentType", formData.appointmentType);
+        data.append("isCoverUp", formData.isCoverUp);
+        data.append("coverUpType", formData.coverUpType || "");
+        data.append("sizeCM", formData.sizeCM || "");
+        data.append("placement", formData.placement || "");
+        data.append("idea", formData.idea || "");
+
+        // attach files if they were actually selected
+        if (formData.referenceImg) {
+            data.append("referenceImg", formData.referenceImg);
+        }
+        if (formData.existingTattooImg) {
+            data.append("existingTattooImg", formData.existingTattooImg);
+        }
+
+        try {
+            const response = await fetch('http://localhost:5050/api/bookings', {
+                method: 'POST',
+                // NOTE: Leave Content-Type header out! The browser handles multipart boundaries automatically.
+                body: data 
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log("Successfully saved to DB:", result);
+                
+                // open whatsapp with a pre-filled client summary
+                const waNumber = "+27 680424933"; // TODO: swap with her actual WhatsApp number (DONE)
+                const waMessage = encodeURIComponent(
+                    `Hi! 🦇 I just submitted a booking request on the site.\n\n` +
+                    `*Name:* ${formData.name}\n` +
+                    `*Phone:* ${formData.phone}\n` +
+                    `*Type:* ${formData.appointmentType}\n` +
+                    `${formData.isCoverUp ? `*Cover-up Type:* ${formData.coverUpType}\n` : `*Size:* ${formData.sizeCM}\n*Placement:* ${formData.placement}\n*Idea:*${formData.idea}\n`}` +
+                    `Can't wait to hear from you!`
+                );
+
+                window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
+                alert("Booking submitted successfully! 🦇✨");
+            } else {
+                alert(`Error saving booking: ${result.error}`);
+            }
+        } catch (err) {
+            console.error("Network error:", err);
+            alert("Failed to connect to the backend server. Is port 5050 running?");
+        }
     };
 
     return(
@@ -88,14 +140,13 @@ export default function BookingForm() {
                                 onChange={handleChange} 
                                 required
                             >
-                                {/* might lowkey need to ask her the specific names of the services she provides */}
                                 <option value="Tattoo">Tattoo</option>
                                 <option value="Piercing">Piercing</option>
                                 <option value="Permanent Makeup">Permanent Makeup</option>
                             </select>
                         </div>
 
-                        {/* checkbox appears if tattoo is selected "this is a cover-up/rework/enhancement" */}
+                        {/* checkbox appears if tattoo is selected */}
                         {formData.appointmentType === "Tattoo" && (
                             <div className="booking-field checkbox-field d-flex align-items-center">
                                 <input 
@@ -125,10 +176,8 @@ export default function BookingForm() {
                         {formData.isCoverUp ? (
                             <>
                                 <div className="booking-field">
-                                    {/* only show this screen if checkbox is selected */}
                                     <label htmlFor="coverUpType">Please indicate if this is a: </label>
                                     <div className="radio-group d-flex flex-column gap-2 mt-2">
-                                        {/* radio selection menu */}
                                         <label>
                                             <input 
                                                 type="radio" 
@@ -161,7 +210,6 @@ export default function BookingForm() {
 
                                 <div className="booking-filed mt-3">
                                     <label htmlFor="fileUpload">Please include a photo of your existing tattoo.</label>
-                                    {/* required when a tattoo type is selected */}
                                     <input 
                                         type="file" 
                                         id="fileUpload" 
@@ -202,12 +250,12 @@ export default function BookingForm() {
                                 </div>
 
                                 <div className="booking-filed">
-                                    <label htmlFor="referenceIdea">Reference pic or a quick idea of what you’re wanting.</label>
+                                    <label htmlFor="idea">Reference pic or a quick idea of what you’re wanting.</label>
                                     <input 
                                         type="text" 
-                                        id="referenceIdea" 
-                                        name="referenceIdea" 
-                                        value={formData.referenceIdea}
+                                        id="idea" 
+                                        name="idea" 
+                                        value={formData.idea}
                                         onChange={handleChange}
                                         placeholder="Reference Idea" 
                                         required 
