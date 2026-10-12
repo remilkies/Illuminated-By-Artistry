@@ -12,7 +12,7 @@ if (!fs.existsSync(uploadDir)){
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// where do we throw the files? right here into /uploads with a unique name so they don't overwrite each other
+// throw the files into /uploads with a unique name so they don't overwrite each other o7
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, uploadDir);
@@ -28,13 +28,15 @@ const upload = multer({ storage: storage });
 // 🦇 INCOMING BOOKING: catch form data + images and yeet them straight into MongoDB
 router.post('/', upload.fields([
     { name: 'referenceImg', maxCount: 1 },
-    { name: 'existingTattooImg', maxCount: 1 }
+    { name: 'existingTattooImg', maxCount: 1 },
+    { name: 'removalImg', maxCount: 1 }
 ]), async (req, res) => {
     try {
         const bookingData = { ...req.body };
         const baseUrl = `${req.protocol}://${req.get('host')}`;
         let referenceImgUrl = null;
         let existingTattooImgUrl = null;
+        let removalImgUrl = null;
 
         if (req.files) {
             if (req.files['referenceImg']) {
@@ -47,6 +49,11 @@ router.post('/', upload.fields([
                 bookingData.existingTattooImg = filePath;
                 existingTattooImgUrl = `${baseUrl}/${filePath}`;
             }
+            if (req.files['removalImg']) {
+                const filePath = req.files['removalImg'][0].path.replace(/\\/g, '/');
+                bookingData.removalImg = filePath;
+                removalImgUrl = `${baseUrl}/${filePath}`;
+            }
         }
 
         if (bookingData.isCoverUp === 'true') bookingData.isCoverUp = true;
@@ -57,13 +64,14 @@ router.post('/', upload.fields([
         
         console.log("New booking saved with images:", savedBooking._id);
         
-        // Send back success along with the image URLs!
+        // Send back success along with all possible image URLs :P
         res.status(201).json({ 
             success: true, 
             message: "Booking request received successfully!",
             data: savedBooking,
             referenceImgUrl,
-            existingTattooImgUrl
+            existingTattooImgUrl,
+            removalImgUrl
         });
     } catch (error) {
         console.error("Error saving booking:", error.message);
@@ -74,7 +82,7 @@ router.post('/', upload.fields([
     }
 });
 
-// 🌙 FETCH ALL BOOKINGS (for when the artist is stalking her own dashboard later)
+// 🌙 FETCH ALL BOOKINGS
 router.get('/', async (req, res) => {
     try {
         const bookings = await Booking.find().sort({ createdAt: -1 });
