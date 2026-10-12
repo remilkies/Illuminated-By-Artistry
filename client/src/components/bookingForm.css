@@ -1,122 +1,156 @@
-/* Main wrapper: centers the frame and scales it perfectly without cutting off */
+/* --- BOOKING FORM WRAPPER & FRAME --- */
 .booking-form-wrapper {
     min-height: 100vh;
     width: 100%;
-    background-image: url('../assets/bookingForm.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; 
-
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    background-color: #020403;
 }
 
-/* Constrains form elements so they stay inside the inner border of your background graphic */
+
+.booking-form-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/bookingForm.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none; 
+    z-index: 10; 
+}
+
+/*  Polygon Clip-Path */
 .booking-card {
+    position: relative;
     width: 100%;
-    /* max-width: 420px; */
-    /* padding: 5rem 1.5rem 2rem 1.5rem;  */
+    max-width: 34rem; 
+    height: 46rem; 
+    
+    background-color: #020403;
+    clip-path: polygon(
+        0% 0%, 
+        100% 0%, 
+        100% 100%, 
+        0% 100%
+    ); 
+
+    border: 1px solid rgba(246, 227, 212, 0.15);
+    padding: 3rem 3.5rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+    z-index: 2; /* underneath border overlay */
 }
 
-
+/* --- HEADER --- */
 .booking-header {
     color: #F6E3D4;
-text-align: center;
-font-family: 'Splash', cursive;
-font-size: 3rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    text-align: center;
+    font-family: 'Splash', cursive;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+}
 
+/* --- MIDDLE SCROLL / FLEX CONTAINER --- */
+.form-content-container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 1rem 0;
 }
 
 .booking-form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
 }
 
-.booking-field,
-.booking-filed {
+.booking-field {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.25rem;
 }
 
-/* Labels: gold, uppercase, elegant */
-.booking-field label,
-.booking-filed label {
+.booking-field label {
     color: #e6c594;
     font-family: "Playfair Display", serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
 
-/* Inputs, selects, and textareas */
+/* Inputs & Selects */
 .booking-field input[type="text"],
 .booking-field input[type="number"],
-.booking-field select,
-.booking-filed input[type="text"],
-.booking-filed input[type="number"] {
+.booking-field select {
     width: 100%;
     background-color: #000000;
-    border: 2px solid #FDE2C5;;
+    border: 1px solid #FDE2C5;
     border-radius: 30px;
-    padding: 1.5rem 1.2rem;
+    padding: 0.85rem 1.2rem;
     color: #ffffff;
     font-family: "Playfair Display", serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
-.booking-field input::placeholder,
-.booking-filed input::placeholder {
-    color: rgb(255, 255, 255);
+.booking-field input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .booking-field input:focus,
-.booking-field select:focus,
-.booking-filed input:focus {
+.booking-field select:focus {
     border-color: #ffffff;
 }
 
-/* File upload styling */
+/* File Inputs */
 input[type="file"] {
     color: #e6c594;
     font-family: "Playfair Display", serif;
-    font-size: 0.8rem;
-    margin-top: 0.4rem;
+    font-size: 0.75rem;
 }
 
-/* Checkbox styling */
+/* Checkbox */
 .checkbox-field {
     flex-direction: row !important;
     align-items: center;
     gap: 0.5rem;
     color: #ffffff;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-family: "Playfair Display", serif;
+    margin-top: 0.2rem;
 }
 
 .checkbox-field input[type="checkbox"] {
     accent-color: #e6c594;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
-/* Radio group for cover-ups */
+/* Radio Group */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
 .radio-group label {
     color: #ffffff !important;
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
     text-transform: none !important;
     letter-spacing: normal !important;
     display: flex;
@@ -129,23 +163,30 @@ input[type="file"] {
     accent-color: #e6c594;
 }
 
-/* Next Arrow Button (matches wireframe circle) */
+/* --- FOOTER (Button & Pagination Dots) --- */
+.booking-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
 .next-btn-arrow {
-    align-self: center;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     background-color: #F6E3D4;
     color: #000000;
     border: none;
     border-radius: 50%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
-    box-shadow: 0 4px 0 0 #DCB993;
+    box-shadow: 0 3px 0 0 #DCB993;
 }
 
 .next-btn-arrow:hover {
@@ -153,20 +194,12 @@ input[type="file"] {
     transform: scale(1.05);
 }
 
-/* Disclaimer text on step 3 */
-.disclaimer-text {
-    color: #e6c594;
-    font-family: "Playfair Display", serif;
-    font-size: 0.8rem;
-    line-height: 1.6;
-}
-
 .book-btn {
     background-color: #e6c594;
     color: #000;
     border: none;
     border-radius: 30px;
-    padding: 0.7rem 2.2rem;
+    padding: 0.6rem 2rem;
     font-family: "Playfair Display", serif;
     font-weight: bold;
     letter-spacing: 2px;
@@ -178,16 +211,23 @@ input[type="file"] {
     background-color: #fff;
 }
 
-/* Pagination dots */
+/* Disclaimer text */
+.disclaimer-text {
+    color: #e6c594;
+    font-family: "Playfair Display", serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+/* Pagination Dots */
 .pagination-dots {
     display: flex;
-    gap: 0.6rem;
-    margin-top: 1.5rem;
+    gap: 0.5rem;
 }
 
 .dot {
-    width: 1.3125rem;
-    height: 1.3125rem;
+    width: 0.9rem;
+    height: 0.9rem;
     border: 1px solid #F6E3D4;
     border-radius: 50%;
     background-color: transparent;

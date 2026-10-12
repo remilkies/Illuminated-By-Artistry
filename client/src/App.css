@@ -1,22 +1,38 @@
-#root{
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #020403; 
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+#root {
     background-image: url(./assets/background.svg);
     background-position: center;
     background-color: #020403;
+    min-height: 100vh;
+    width: 100%;
 }
 
-.hanging-starburst{
+.hanging-starburst {
     position: absolute;
     top: 0;
     left: 0;
-
     z-index: 1;
 }
 
-.hanging-decor{
+.hanging-decor {
     position: absolute;
     top: 0;
     right: 0;
-
     z-index: 1;
 }
 
@@ -26,27 +42,28 @@
     width: 100%;
     min-height: 100vh;
 
+    /* Border SVG Fixes */
     background-image: url('./assets/heroBorder.svg');
-
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2rem; /* Keeps interior logo/text from touching the border frame */
+}
 
-
-  }
-
-  .hero-nav {
+.hero-nav {
     position: absolute;
     top: 3rem;
     left: 4rem;
     display: flex;
     gap: 2rem;
     z-index: 10;
-  }
-  
-  .hero-nav a {
+}
+
+.hero-nav a {
     color: #f3eacb; 
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
@@ -54,37 +71,38 @@
     text-decoration: none;
     text-transform: uppercase;
     transition: opacity 0.2s ease;
-  }
-  
-  .hero-nav a:hover {
+}
+
+.hero-nav a:hover {
     opacity: 0.7;
-  }
-  
-  .hero-content {
+}
+
+.hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-  
-  .hero-logo-container {
+}
+
+.hero-logo-container {
     background-image: url(./assets/heroLogoBoder.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 27.0625rem;
-height: 23.21994rem;
-display: flex;
-align-content: center;
-justify-content: center;
-  }
-  .logo-icon {
+    height: 23.21994rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.logo-icon {
     width: 12.11194rem;
     height: auto;
     margin-bottom: 1rem;
-  }
-  
-  .hero-title {
+}
+
+.hero-title {
     display: flex;
     font-family: 'Playfair Display', serif;
     color: #ffffff;
@@ -93,20 +111,19 @@ justify-content: center;
     letter-spacing: 4px;
     text-transform: uppercase;
     margin: 0;
-    margin-top: -1em;
-    margin-bottom: -1.5em;
-  }
-  
-  .hero-subtitle {
+
+}
+
+.hero-subtitle {
     font-family: 'Splash', cursive;
     color: #fcebd9; 
     font-size: 3.5rem;
     font-weight: 400;
     letter-spacing: 14.72px;
     margin: -0.5rem 0 1.5rem 0;
-  }
-  
-  .hero-tagline {
+}
+
+.hero-tagline {
     font-family: 'Playfair Display', serif;
     color: #DCB993; 
     font-size: 1.25rem;
@@ -115,8 +132,8 @@ justify-content: center;
     text-transform: uppercase;
     margin: 0;
     display: flex;
-  }
+}
 
-  .left{
+.left {
     transform: scaleX(-1);
-  }
+}

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Col, Row } from 'react-bootstrap';
+import './instaFeed.css'
+import titleFlourish from '../assets/titleFlourish.svg';
+import cornorDecor from '../assets/cornerDecor.svg';
 
 const PINNED_PROMOS = [
     {
         id: 1,
-        imageUrl: "/promo1.jpg", // Saved directly in your Vite public/ folder
+        imageUrl: "/promo1.jpg",
         caption: "Tattoo Promo",
         permalink: "https://www.instagram.com/"
     },
@@ -24,44 +29,32 @@ const PINNED_PROMOS = [
 export default function InstaFeed() {
     const [posts, setPosts] = useState(PINNED_PROMOS);
 
-    // 🦇 The Noble API Quest (Paused for deployment launch)
-    useEffect(() => {
-        // const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050';
-        // fetch(`${API_BASE_URL}/api/instagram`)
-        //   .then(res => res.json())
-        //   .then(data => {
-        //       if (Array.isArray(data) && data.length > 0) setPosts(data.slice(0, 3));
-        //   })
-        //   .catch(err => console.log("Using static pinned promos"));
-    }, []);
-
     return (
         <section className="insta-updates-container py-5 text-center">
             
+            <div className="insta-title">
+                <img src={titleFlourish} alt="Title Flourish" className="title-flourish left" />
+                <h2>Active Promotions</h2>
+                <img src={titleFlourish} alt="Title Flourish" className="title-flourish" />
+            </div>
 
-            <h2 className="insta-title mb-5">INSTA UPDATES</h2>
-
-
-            <div className="container">
-                <div className="row justify-content-center gap-4">
-                    
+            <div className="container posts-container">
+                <Row className="justify-content-center g-4">
                     {posts.map((post, index) => (
-                        <div key={post.id || index} className="insta-card-wrapper col-12 col-md-3">
+                        /* Use md={4} so 3 cards comfortably fill 12 columns (4 + 4 + 4 = 12) */
+                        <Col xs={12} md={4} key={post.id || index} className="insta-card-wrapper d-flex justify-content-center">
                             <a 
                                 href={post.permalink || "https://www.instagram.com/"} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
-                                className="insta-link"
+                                className="insta-link w-100"
                             >
                                 <div className="insta-frame-card">
-                                    
+                                    <img src={cornorDecor} alt="" className="corner-decor top-left" />
+                                    <img src={cornorDecor} alt="" className="corner-decor top-right"/>
+                                    <img src={cornorDecor} alt="" className="corner-decor bottom-left"/>
+                                    <img src={cornorDecor} alt="" className="corner-decor bottom-right" />
 
-                                    <div className="corner-decor top-left"></div>
-                                    <div className="corner-decor top-right"></div>
-                                    <div className="corner-decor bottom-left"></div>
-                                    <div className="corner-decor bottom-right"></div>
-
-                                    {/* Image Display */}
                                     <div className="insta-image-container">
                                         {post.imageUrl ? (
                                             <img 
@@ -73,13 +66,11 @@ export default function InstaFeed() {
                                             <div className="placeholder-box"></div>
                                         )}
                                     </div>
-
                                 </div>
                             </a>
-                        </div>
+                        </Col>
                     ))}
-
-                </div>
+                </Row>
             </div>
 
         </section>

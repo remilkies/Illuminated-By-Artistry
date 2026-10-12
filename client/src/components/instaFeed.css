@@ -1,0 +1,136 @@
+.insta-updates-container {
+    width: 100%;
+    position: relative;
+    padding: 4rem 1rem;
+    background: transparent;
+}
+
+/* --- TITLE & FLOURISH HEADER --- */
+.insta-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.insta-title h2 {
+    font-family: 'Playfair Display', serif;
+    color: #F6E3D4;
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.title-flourish {
+    width: auto;
+    height: 2.5rem;
+}
+
+.title-flourish.left {
+    transform: scaleX(-1);
+}
+
+/* --- CARD LINK & CONTAINER --- */
+.insta-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    max-width: 20.5rem;
+    margin: 0 auto;
+}
+
+.insta-frame-card {
+    position: relative;
+    width: 100%;
+    height: 27.25rem;    
+    margin: 0 auto;
+    padding: 18px; 
+    background-color: #020403;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+.insta-link:hover .insta-frame-card {
+    transform: translateY(-6px);
+    border-color: #dcb993;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9), 
+                0 0 15px rgba(220, 185, 147, 0.25);
+}
+
+/* --- CORNER ACCENT SVGs --- */
+.corner-decor {
+    position: absolute;
+    width: 9.07456rem;
+    height: 9.1535rem;
+    pointer-events: none;
+    z-index: 5;
+    transition: filter 0.3s ease;
+}
+
+.corner-decor.top-left {
+    top: -2px;
+    left: -2px;
+}
+
+.corner-decor.top-right {
+    top: -2px;
+    right: -2px;
+    transform: scaleX(-1);
+}
+
+.corner-decor.bottom-left {
+    bottom: -2px;
+    left: -2px;
+    transform: scaleY(-1);
+}
+
+.corner-decor.bottom-right {
+    bottom: -2px;
+    right: -2px;
+    transform: scale(-1, -1);
+}
+
+.insta-link:hover .corner-decor {
+    filter: drop-shadow(0 0 5px rgba(220, 185, 147, 0.7));
+}
+
+/* --- IMAGE DISPLAY CONTAINER --- */
+.insta-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0b0f0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insta-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9) contrast(1.05);
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.insta-link:hover .insta-image-container img {
+    transform: scale(1.04);
+    filter: brightness(1) contrast(1.1);
+}
+
+.placeholder-box {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a231e 0%, #020403 100%);
+    border: 1px dashed rgba(220, 185, 147, 0.2);
+}
