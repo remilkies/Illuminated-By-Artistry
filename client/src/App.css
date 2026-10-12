@@ -1,0 +1,122 @@
+#root{
+    background-image: url(./assets/background.svg);
+    background-position: center;
+    background-color: #020403;
+}
+
+.hanging-starburst{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}
+
+.hanging-decor{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    z-index: 1;
+}
+
+/* --- HERO SECTION --- */
+.hero-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    background-image: url('./assets/heroBorder.svg');
+
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+  }
+
+  .hero-nav {
+    position: absolute;
+    top: 3rem;
+    left: 4rem;
+    display: flex;
+    gap: 2rem;
+    z-index: 10;
+  }
+  
+  .hero-nav a {
+    color: #f3eacb; 
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+  
+  .hero-nav a:hover {
+    opacity: 0.7;
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-logo-container {
+    background-image: url(./assets/heroLogoBoder.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 27.0625rem;
+height: 23.21994rem;
+display: flex;
+align-content: center;
+justify-content: center;
+  }
+  .logo-icon {
+    width: 12.11194rem;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-title {
+    display: flex;
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 3rem; 
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    margin-top: -1em;
+    margin-bottom: -1.5em;
+  }
+  
+  .hero-subtitle {
+    font-family: 'Splash', cursive;
+    color: #fcebd9; 
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 14.72px;
+    margin: -0.5rem 0 1.5rem 0;
+  }
+  
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    color: #DCB993; 
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+    display: flex;
+  }
+
+  .left{
+    transform: scaleX(-1);
+  }

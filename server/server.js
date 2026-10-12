@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import Booking from 'models/Booking.js'; // run node, and if the thing complains the dd ./
+import Booking from './models/Booking.js'; // run node, and if the thing complains the dd ./
 // import FlashDesign from './models/FlashDesign.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 

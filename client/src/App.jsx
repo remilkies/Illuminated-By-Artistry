@@ -1,122 +1,79 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+// src/App.jsx
+import React from 'react';
 import './App.css'
+import { Col } from 'react-bootstrap';
 
-function App() {
-  const [count, setCount] = useState(0)
+import hangingStarbusrt from './assets/hangingStarburst.svg';
+import hangingDecor from './assets/hangingDecor.svg';
 
+import ibaLogo from './assets/iba-logo.svg';
+
+import moonCrest from './assets/moonCrest.svg';
+import captionFlourih from './assets/captionFlourish.svg';
+
+import InstaFeed from './components/instaFeed';
+
+// import Navbar from './components/Navbar';
+// import Pricing from './components/Pricing';
+// import Bio from './components/Bio';
+import BookingForm from './components/bookingForm';
+
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      {/* <Navbar /> */}
+      <main className="container-fluid">
 
-      <div className="ticks"></div>
+        <section className="hero-container">
+          <img src={hangingStarbusrt} alt="Hanging Starburst" className="hanging-starburst" />
+          <img src={hangingDecor} alt="Hanging Decor" className="hanging-decor" />
+  <nav className="hero-nav">
+    <a href="#home">HOME</a>
+    <a href="#pricing">PRICING</a>
+    <a href="#jewellery">JEWELLERY</a>
+    <a href="#booking">BOOK NOW</a>
+  </nav>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  <div className="hero-content">
+    <div className='hero-logo-container'>
+      <img src={ibaLogo} alt="IBA Logo" className="logo-icon" />
+    </div>
+    
+    <div className="hero-title">
+      <img src={moonCrest} alt="Moon Crest" className="moon-crest left" />
+      <h1>Illuminated</h1>
+      <img src={moonCrest} alt="Moon Crest" className="moon-crest" />
+      </div>
+    <h2 className="hero-subtitle">By Artistry</h2>
+    <div  className="hero-tagline">
+    <img src={captionFlourih} alt='caption flourish' className='caption-flourish left'/><p>Piercings. Tattoos. Beauty</p><img src={captionFlourih} alt='caption flourish' className='caption-flourish right'/>
+    </div>
+    
+  </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        </section>
+        
+        <section>
+          <InstaFeed/>
+        </section>
+        <section id="pricing">
+          {/* <Pricing /> */}
+        </section>
+
+        <section id="bio">
+          {/* <Bio /> */}
+        </section>
+
+        <section id="booking">
+          <div className='row justify-content-center'>
+            
+            <Col md={6}>
+            <BookingForm />
+            </Col>
+          
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
-
-export default App

@@ -32,18 +32,23 @@ router.post('/', upload.fields([
 ]), async (req, res) => {
     try {
         const bookingData = { ...req.body };
+        const baseUrl = `${req.protocol}://${req.get('host')}`;
+        let referenceImgUrl = null;
+        let existingTattooImgUrl = null;
 
-        // grab actual file paths if they actually attached something
         if (req.files) {
             if (req.files['referenceImg']) {
-                bookingData.referenceImg = req.files['referenceImg'][0].path;
+                const filePath = req.files['referenceImg'][0].path.replace(/\\/g, '/');
+                bookingData.referenceImg = filePath;
+                referenceImgUrl = `${baseUrl}/${filePath}`;
             }
             if (req.files['existingTattooImg']) {
-                bookingData.existingTattooImg = req.files['existingTattooImg'][0].path;
+                const filePath = req.files['existingTattooImg'][0].path.replace(/\\/g, '/');
+                bookingData.existingTattooImg = filePath;
+                existingTattooImgUrl = `${baseUrl}/${filePath}`;
             }
         }
 
-        // formData turns booleans into strings like a clown, fix that real quick
         if (bookingData.isCoverUp === 'true') bookingData.isCoverUp = true;
         if (bookingData.isCoverUp === 'false') bookingData.isCoverUp = false;
 
@@ -51,10 +56,14 @@ router.post('/', upload.fields([
         const savedBooking = await newBooking.save();
         
         console.log("New booking saved with images:", savedBooking._id);
+        
+        // Send back success along with the image URLs!
         res.status(201).json({ 
             success: true, 
             message: "Booking request received successfully!",
-            data: savedBooking 
+            data: savedBooking,
+            referenceImgUrl,
+            existingTattooImgUrl
         });
     } catch (error) {
         console.error("Error saving booking:", error.message);
