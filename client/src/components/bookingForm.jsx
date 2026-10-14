@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./bookingForm.css"
 
+import titleFlourish from '../assets/titleFlourish.svg';
 const PIERCING_OPTIONS = {
     "Facial Piercings": [
         "Nose (Surgical Steel) - R300",
@@ -185,7 +186,11 @@ export default function BookingForm() {
             <div className="booking-card">
 
                 {/* PINNED HEADER */}
-                <h2 className="booking-header">Book your spot <br></br>we'll bring the art</h2>
+                <div className="booking-header">
+                    <img src={titleFlourish} alt="Title Flourish" className="title-flourish left" />
+                    <h2>Book your spot <br></br> <span>we'll bring the art</span></h2>
+                    <img src={titleFlourish} alt="Title Flourish" className="title-flourish" />
+                </div>
 
                 {/* SCROLLABLE / FLEX MIDDLE SECTION */}
                 <div className="form-content-container">
@@ -447,11 +452,11 @@ export default function BookingForm() {
                         <div className="disclaimer-form text-center">
                             <div className="disclaimer-text mb-4">
                                 <p className="fw-bold">PLEASE NOTE:</p>
-                                <p>WE PREFER YOU COME ALONE, BUT IF NEEDED, YOU MAY BRING ONE GUEST.</p>
-                                <p>NO KIDS, NO ENTOURAGE, NO ALCOHOL, AND NO WEED.</p>
-                                <p>IF YOU'RE FEELING SICK (FLU, SINUS, ETC.), PLEASE BE KIND AND RESCHEDULE — WE APPRECIATE IT!</p>
-                                <p>CAN'T WAIT TO CREATE SOMETHING BEAUTIFUL WITH YOU</p>
-                                <p className="mt-3">MUCH LOVE,<br />ILLUMINATED BY ARTISTRY</p>
+                                <p>✦ WE PREFER YOU COME ALONE, BUT IF NEEDED, YOU MAY BRING ONE GUEST.</p>
+                                <p>✦ NO KIDS, NO ENTOURAGE, NO ALCOHOL, AND NO WEED.</p>
+                                <p>✦ IF YOU'RE FEELING SICK (FLU, SINUS, ETC.), PLEASE BE KIND AND RESCHEDULE — WE APPRECIATE IT!</p>
+                                <p>✦ CAN'T WAIT TO CREATE SOMETHING BEAUTIFUL WITH YOU</p>
+                                <p className="mt-3">MUCH LOVE,<br />ILLUMINATED BY ARTISTRY <br />🙏🧿✨❤️</p>
                             </div>
                         </div>
                     )}

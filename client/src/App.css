@@ -20,19 +20,21 @@ html, body {
     background-color: #020403;
     min-height: 100vh;
     width: 100%;
+    background-repeat: repeat-y;
 }
 
 .hanging-starburst {
     position: absolute;
-    top: 0;
+    top: -1em;
     left: 0;
     z-index: 1;
+
 }
 
 .hanging-decor {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1.5em;
+    right: -1.7em;
     z-index: 1;
 }
 
@@ -42,11 +44,17 @@ html, body {
     width: 100%;
     min-height: 100vh;
 
-    /* Border SVG Fixes */
-    background-image: url('./assets/heroBorder.svg');
+    border: 35px solid transparent;
+
+    /* background-image: url('./assets/heroBorder.svg'); */
+
+    /* border-image: [source] [slice-value] / [border-width] [scaling-mode] */
+    border-image: url('./assets/heroBorder.svg') 60 fill / 35px stretch;
+
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%; 
+
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,21 +105,24 @@ html, body {
 }
 
 .logo-icon {
-    width: 12.11194rem;
+    width: 15rem;
     height: auto;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .hero-title {
     display: flex;
     font-family: 'Playfair Display', serif;
     color: #ffffff;
-    font-size: 3rem; 
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
     margin: 0;
 
+}
+
+.hero-title h1{
+    font-size: 6rem;
 }
 
 .hero-subtitle {
@@ -132,8 +143,71 @@ html, body {
     text-transform: uppercase;
     margin: 0;
     display: flex;
+    gap: 1rem;
 }
 
+.hero-tagline p{
+    transform: translateY(.5rem);
+}
 .left {
     transform: scaleX(-1);
+}
+
+/* --- ✨MOBILE RESPONSIVITY✨ --- */
+@media (max-width: 768px) {
+    .hanging-starburst {
+        height: 20rem;
+    
+    }
+    
+    .hanging-decor {
+        height: 18rem;
+    }
+
+    .hero-container {
+        border-width: 20px; /* Slim down the frame on mobile so it doesn't swallow the screen */
+        border-image-width: 20px;
+        padding: 1rem;
+    }
+
+    .hero-nav {
+        top: 1.5rem;
+        left: 1.5rem;
+        gap: 1rem;
+    }
+
+    .hero-nav a {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-content{
+        transform: translateY(2rem);
+    }
+
+    .hero-title h1{
+        font-size: 2.7rem;
+        letter-spacing: 2px;
+    }
+
+    .moon-crest{
+        width: 5rem;
+        height: auto;
+    }
+    .hero-title {
+        margin-top: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2.2rem;
+        letter-spacing: 6px;
+        margin-top: .5rem;
+    }
+
+
+    .hero-tagline {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-align: center;
+    }
 }

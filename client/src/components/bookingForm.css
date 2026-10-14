@@ -10,7 +10,6 @@
     background-color: #020403;
 }
 
-
 .booking-form-wrapper::after {
     content: '';
     position: absolute;
@@ -23,20 +22,22 @@
     z-index: 10; 
 }
 
-/*  Polygon Clip-Path */
+/*  Polygon Clip-Path Card */
 .booking-card {
     position: relative;
     width: 100%;
     max-width: 34rem; 
     height: 46rem; 
-    
     background-color: #020403;
+    
     clip-path: polygon(
-        0% 0%, 
-        100% 0%, 
-        100% 100%, 
-        0% 100%
-    ); 
+        0% 15px, 
+        50% 0px, 
+        100% 15px, 
+        100% calc(100% - 15px), 
+        50% 100%, 
+        0% calc(100% - 15px)
+    );
 
     border: 1px solid rgba(246, 227, 212, 0.15);
     padding: 3rem 3.5rem;
@@ -45,18 +46,36 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    z-index: 2; /* underneath border overlay */
+    z-index: 2;
 }
 
 /* --- HEADER --- */
 .booking-header {
-    color: #F6E3D4;
+    display: flex;
     text-align: center;
-    font-family: 'Splash', cursive;
-    font-size: 2.5rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.booking-header h2{
+    color: #F6E3D4;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
     font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     line-height: 1.2;
     margin: 0;
+}
+
+.booking-header
+span{
+    text-align: center;
+    font-family: 'Splash', cursive;
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: none;
 }
 
 /* --- MIDDLE SCROLL / FLEX CONTAINER --- */
@@ -237,4 +256,30 @@ input[type="file"] {
 
 .dot.active {
     background-color: #F6E3D4;
+}
+
+@media (max-width: 768px) {
+    .booking-card {
+        max-width: 90%;
+        height: auto;
+        padding: 2rem;
+    }
+
+.booking-header{
+    padding-bottom: 2rem;
+}
+    .booking-header h2 {
+        font-size: 1.5rem;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .booking-header span {
+        font-size: 1.5rem;
+    }
+
+    .booking-footer{
+        transform: translateY(1.5rem);
+    }
+    
 }

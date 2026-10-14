@@ -134,3 +134,9 @@
     background: radial-gradient(circle, #1a231e 0%, #020403 100%);
     border: 1px dashed rgba(220, 185, 147, 0.2);
 }
+
+@media (max-width: 768px) {
+    .insta-title h2{
+        font-size: 1.78rem;
+    }
+}
