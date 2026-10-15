@@ -72,7 +72,7 @@ html, body {
 }
 
 .hero-nav a {
-    color: #f3eacb; 
+    color: #f3eacb !important; 
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     letter-spacing: 2px;
@@ -153,6 +153,53 @@ html, body {
     transform: scaleX(-1);
 }
 
+.social-icons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Playfair Display', serif;
+    color: #DCB993; 
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none !important; /* Removes blue/purple link underlines */
+    color: #DCB993 !important;
+    transition: opacity 0.3s ease;
+}
+
+.icon:hover {
+    opacity: 0.8;
+}
+
+.icon img {
+    width: 1.5rem;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover img {
+    transform: scale(1.15);
+}
+
+.icon span {
+    color: #DCB993;
+    font-size: 1rem;
+    text-decoration: none !important;
+}
+
+/* Fallback reset for any lingering anchor links */
+a, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+    color: inherit;
+}
+
 /* --- ✨MOBILE RESPONSIVITY✨ --- */
 @media (max-width: 768px) {
     .hanging-starburst {
@@ -209,5 +256,67 @@ html, body {
         font-size: 0.9rem;
         letter-spacing: 1px;
         text-align: center;
+    }
+}
+@media (max-width: 480px) {
+    .hanging-starburst {
+        height: 15rem;
+    
+    }
+    
+    .hanging-decor {
+        height: 15rem;
+    }
+
+    .hero-container {
+        border-width: 15px; /* Slim down the frame on mobile so it doesn't swallow the screen */
+        border-image-width: 15px;
+        padding: 0.5rem;
+    }
+
+    .hero-nav {
+        top: 1rem;
+        left: 1rem;
+        gap: 0.5rem;
+    }
+
+    .hero-nav a {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-logo-container {
+        width: 21rem;
+        height: 18rem;
+    }
+
+    .logo-icon {
+        width: 11rem;
+        height: auto;
+        margin-top: 0.5rem;
+    }
+    .hero-content{
+        transform: translateY(1rem);
+    }
+
+    .hero-title h1{
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .moon-crest{
+        width: 4rem;
+        height: auto;
+    }
+    .hero-title {
+        margin-top: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.71rem;
     }
 }

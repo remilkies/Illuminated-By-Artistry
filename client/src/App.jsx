@@ -11,6 +11,10 @@ import ibaLogo from './assets/iba-logo.svg';
 import moonCrest from './assets/moonCrest.svg';
 import captionFlourih from './assets/captionFlourish.svg';
 
+import whatsappIcon from '/whatsapp-icon.svg';
+import instagramIcon from '/instagram-icon.svg';
+import locationIcon from '/location-icon.svg';
+
 import InstaFeed from './components/instaFeed';
 
 // import Navbar from './components/Navbar';
@@ -48,6 +52,37 @@ export default function App() {
     <div  className="hero-tagline">
     <img src={captionFlourih} alt='caption flourish' className='caption-flourish left'/><p>Piercings. Tattoos. Beauty</p><img src={captionFlourih} alt='caption flourish' className='caption-flourish right'/>
     </div>
+    <div className='social-icons'>
+  <a 
+    href="https://www.instagram.com/illuminated_by_artistry/" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className='icon'
+  >
+    <img src={instagramIcon} alt="Instagram Icon" className="instagram-icon" /> 
+    <span>@illuminated_by_artistry</span>
+  </a>
+
+  <a 
+    href="https://wa.me/27680424933" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className='icon'
+  >
+    <img src={whatsappIcon} alt="WhatsApp Icon" className="whatsapp-icon" /> 
+    <span>068 042 4933</span>
+  </a>
+
+  <a 
+    href='https://maps.app.goo.gl/agom2uu2bmghUBEp8' 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className='icon'
+  >
+    <img src={locationIcon} alt="Location Icon" className="location-icon" /> 
+    <span>Little Falls, Roodepoort</span> 
+  </a>
+</div>
     
   </div>
 
