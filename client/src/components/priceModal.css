@@ -1,0 +1,162 @@
+.price-section-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+  
+  .price-card {
+    background-color: #080808;
+    border: 2px solid #DCB993;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    color: #DCB993;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .price-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .price-header h2 {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+  
+  .price-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  
+  /* Accordion Outer Pill Frame */
+  .accordion-item {
+    border: 1px solid rgba(220, 185, 147, 0.4);
+    border-radius: 30px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .accordion-item.open {
+    border-color: #DCB993;
+    background: rgba(220, 185, 147, 0.03);
+  }
+  
+  .accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #DCB993;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .accordion-item.open .accordion-header {
+    background: rgba(220, 185, 147, 0.1);
+  }
+  
+  .category-title {
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .header-flourish {
+    width: 1.8rem;
+    height: auto;
+    opacity: 0.8;
+  }
+  
+  .header-flourish.right {
+    transform: scaleX(-1);
+  }
+  
+  .chevron {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+  
+  /* Collapsible Content Area */
+  .accordion-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  /* Dotted Leader Line Rows */
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .service-name {
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  
+  .leader-dots {
+    flex: 1;
+    border-bottom: 2px dotted rgba(220, 185, 147, 0.4);
+    margin: 0 0.5rem;
+    position: relative;
+    top: -3px;
+  }
+  
+  .service-price {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  
+  .price-notes {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(220, 185, 147, 0.3);
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 480px) {
+    .price-card {
+      padding: 1.5rem 0.85rem;
+    }
+    .header-flourish {
+      width: 1.3rem;
+    }
+    .category-title {
+      font-size: 0.95rem;
+    }
+    .price-row {
+      font-size: 0.82rem;
+    }
+  }

@@ -1,4 +1,5 @@
 // src/App.jsx
+import { useState } from "react";
 import React from 'react';
 import './App.css'
 import { Col } from 'react-bootstrap';
@@ -20,9 +21,12 @@ import InstaFeed from './components/instaFeed';
 // import Navbar from './components/Navbar';
 // import Pricing from './components/Pricing';
 // import Bio from './components/Bio';
+import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
 
 export default function App() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="app">
       {/* <Navbar /> */}
@@ -101,7 +105,11 @@ export default function App() {
 
         <section id="booking">
           <div className='row justify-content-center'>
-            
+            <Col md={6}>
+
+      <PriceModal/>
+      </Col>
+
             <Col md={6}>
             <BookingForm />
             </Col>
