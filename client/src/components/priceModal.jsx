@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./priceModal.css";
 import titleFlourish from "../assets/titleFlourish.svg";
-
+import butterfly from "../assets/butterfly.svg";
 const PRICE_DATA = {
     "Facial Piercings": [
         { service: "Nose (Surgical Steel)", price: "R300" },
@@ -72,7 +72,7 @@ const PRICE_DATA = {
 
 export default function PriceListSection() {
     //  null to have all collapsed initially o7
-    const [activeCategory, setActiveCategory] = useState("null");
+    const [activeCategory, setActiveCategory] = useState(null);
 
     const toggleCategory = (category) => {
         setActiveCategory(activeCategory === category ? null : category);
@@ -80,9 +80,11 @@ export default function PriceListSection() {
 
     return (
         <div className="price-section-wrapper">
-            <div className="price-card">
 
-                {/* Header */}
+            <div className="price-card">
+                <img src={butterfly} alt="Butterfly" className="butterfly-decor" />
+
+
                 <div className="price-header">
                     <img src={titleFlourish} alt="" className="title-flourish left" />
                     <h2>Price List</h2>
