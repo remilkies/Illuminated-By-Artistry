@@ -57,7 +57,7 @@ const PRICE_DATA = {
 };
 
 export default function PriceListSection() {
-    // Default to "Facial Piercings" open (or set to null to have all collapsed initially)
+    //  null to have all collapsed initially o7
     const [activeCategory, setActiveCategory] = useState("Facial Piercings");
   
     const toggleCategory = (category) => {
@@ -76,7 +76,7 @@ export default function PriceListSection() {
           </div>
           <p className="price-subtitle">✦ Tap a category to view prices ✦</p>
   
-          {/* Accordion Categories */}
+
           <div className="accordion-container">
             {Object.entries(PRICE_DATA).map(([category, items]) => {
               const isExpanded = activeCategory === category;
@@ -92,15 +92,15 @@ export default function PriceListSection() {
                     className="accordion-header"
                     onClick={() => toggleCategory(category)}
                   >
-                    <img src={titleFlourish} alt="" className="header-flourish" />
+                    <img src={titleFlourish} alt="" className="header-flourish left" />
                     <span className="category-title">{category}</span>
-                    <img src={titleFlourish} alt="" className="header-flourish right" />
+                    <img src={titleFlourish} alt="" className="header-flourish" />
                     <span className="chevron">
                       {isExpanded ? "▲" : "▼"}
                     </span>
                   </button>
   
-                  {/* Collapsible Content */}
+
                   {isExpanded && (
                     <div className="accordion-body">
                       {items.map((item, idx) => (
