@@ -15,11 +15,38 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+
+//excpelcit CORS configuration for local &aws amplify Production
+const allowedOrigins = [
+  'http://localhost:3000', // React frontend local
+  // 'https://illuminatedbyartistry.com', // Production domain once we have a custom domain set up
+  // 'https://www.illuminatedbyartistry.com', // Production domain with www
+  'https://localhost:5173',
+  'https://main.d3ucowdklyc27z.amplifyapp.com'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 
 // make the uploads folder publicly accessible so we can actually see the pictures later
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+//Route health cheak for Beanstalk
+app.get('/', (req, res) => {
+  res.status(200).send('Illuminated By Artistry API is active & running 🌿✨');
+});
 
 // mount the routes
 app.use('/api/bookings', bookingRoutes);

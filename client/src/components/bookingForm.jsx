@@ -130,7 +130,9 @@ export default function BookingForm() {
         }
 
         try {
-            const response = await fetch('http://localhost:5050/api/bookings', {
+
+            const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050';
+            const response = await fetch(`${API_BASE_URL}/api/bookings`, {
                 method: 'POST',
                 body: data
             });
