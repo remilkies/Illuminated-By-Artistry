@@ -8,39 +8,31 @@
     align-items: center;
     padding: 2rem;
     background-color: #020403;
+    /* overflow: hidden; */
 }
 
-.booking-form-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('../assets/bookingForm.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    pointer-events: none; 
-    z-index: 10; 
-}
+
 
 /*  Polygon Clip-Path Card */
 .booking-card {
     position: relative;
     width: 100%;
-    max-width: 34rem; 
-    height: 46rem; 
+    /* max-width: 29rem;  */
+    height: 48rem; 
     background-color: #020403;
     
-    clip-path: polygon(
+    /* clip-path: polygon(
         0% 15px, 
         50% 0px, 
         100% 15px, 
         100% calc(100% - 15px), 
         50% 100%, 
         0% calc(100% - 15px)
-    );
+    ); */
 
-    border: 1px solid rgba(246, 227, 212, 0.15);
-    padding: 3rem 3.5rem;
+    border-radius: 24px 0 24px 0;
+    /* border: 1px solid rgba(246, 227, 212, 0.15); */
+    padding: 2.5rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,12 +41,30 @@
     z-index: 2;
 }
 
+
+.booking-card::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    bottom: -25px;
+    left: -40px;
+    right: -40px;
+    background-image: url('../assets/bookingForm.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none; 
+    z-index: 10; 
+    transform: translate(-18px, -14px); 
+}
+
 /* --- HEADER --- */
 .booking-header {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 
 }
 
@@ -94,6 +104,7 @@ span{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-width: 25rem;
 }
 
 .booking-field {
@@ -133,7 +144,8 @@ span{
 
 .booking-field input:focus,
 .booking-field select:focus {
-    border-color: #ffffff;
+    border-color: #e6c594;
+    box-shadow: 0 0 10px rgba(230, 197, 148, 0.8);
 }
 
 /* File Inputs */
@@ -236,6 +248,7 @@ input[type="file"] {
     font-family: "Playfair Display", serif;
     font-size: 0.75rem;
     line-height: 1.5;
+    width: 25rem;
 }
 
 /* Pagination Dots */
@@ -263,6 +276,7 @@ input[type="file"] {
         max-width: 90%;
         height: auto;
         padding: 2rem;
+        transform: translate(1.5rem, 0); 
     }
 
 .booking-header{
@@ -287,8 +301,9 @@ input[type="file"] {
 @media (max-width: 480px) {
     .booking-card {
         padding: 1rem 0.75rem;
-        height: auto;
+        height: 45rem;
         min-height: 42rem;
+        transform: translate(1.5rem, -1.5rem);
     }
 
     .booking-header {

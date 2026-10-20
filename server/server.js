@@ -21,7 +21,7 @@ const allowedOrigins = [
   'http://localhost:3000', // React frontend local
   // 'https://illuminatedbyartistry.com', // Production domain once we have a custom domain set up
   // 'https://www.illuminatedbyartistry.com', // Production domain with www
-  'https://localhost:5173',
+  'http://localhost:5173',
   'https://main.d3ucowdklyc27z.amplifyapp.com'
 ];
 
