@@ -17,7 +17,7 @@ I've been a client of this artist for years. Her studio doesn't feel like a corp
 
 ---
 
-## 🌿 Planned Features
+## 🌿 Key Features
  
 * **3-Step Smart Booking Wizard:** Multi-stage client intake form supporting dynamic UI branching for standard tattoos vs. cover-ups/reworks.
 * **Multipart Media Uploads:** Integrated `multer` binary pipeline allowing clients to upload reference pictures and existing tattoo photos directly into server storage.
