@@ -1,7 +1,7 @@
 
-<img src="/src/assets/readmeBanner.png" width="100%">
+<img src="/client/src/assets/readmeBanner.png" width="100%">
 
-
+Deployed Site: [https://main.d3ucowdklyc27z.amplifyapp.com/]
 > *Energy. Expression. Artistry.*  
 
 **Illuminated by Artistry** is a full-stack MERN booking platform and portfolio crafted for a boutique tattoo and piercing studio. Designed and engineered as a surprise gift for the artist behind the needle, the application streamlines client intake through a multi-step booking wizard, dynamic image references, automated calendar checking, and immediate WhatsApp payload routing.
