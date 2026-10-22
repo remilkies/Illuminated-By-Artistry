@@ -79,7 +79,17 @@ The application is deployed on Amazon Web Services (AWS) using a decoupled full-
 ```bash
    cd server
 npm install
-# Create a .env file and add your MONGO_URI
+```
+
+* Create a .env file in (/server)
+```bash
+PORT=5050
+MONGO_URI=your_mongodb_connection_string
+INSTAGRAM_ACCESS_TOKEN=your_token_here
+```
+
+  Start the backend server:
+```bash
 npm start
 ```
  
@@ -87,6 +97,16 @@ npm start
 ```bash
    cd client
 npm install
+```
+
+ * Create a .env file in /client (optional for local dev):
+ ```bash
+VITE_API_URL=http://localhost:5050
+VITE_WHATSAPP_NUMBER=27XXXXXXXXX
+```
+
+Start the development server:
+```bash
 npm run dev
 ```
 
