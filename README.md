@@ -56,7 +56,17 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 (/uploads/unique-file.png)                 Pre-formatted Client Payload
 ```
 
-## Illuminating on your machine
+## 🌿 Deployment Architecture
+
+The application is deployed on Amazon Web Services (AWS) using a decoupled full-stack architecture:
+
+- **Frontend:** Hosted on **AWS Amplify** with automated CI/CD builds connected to the main Git branch.
+- **Backend:** Hosted on **AWS Elastic Beanstalk** (Node.js runtime environment).
+- **Database:** Managed **MongoDB Atlas** cluster connected securely via URI environment variables.
+
+🔗 **Live Production Site:** [illuminated-by-artistry.amplifyapp.com](https://main.d3ucowdklyc27z.amplifyapp.com/)
+
+## ✨ Illuminating on your machine
 
 1. **Clone the repository:**
 ```bash
