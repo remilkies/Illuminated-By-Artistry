@@ -1,0 +1,228 @@
+/* --- ORNATE CARD BASE STYLES --- */
+.ornate-card {
+    position: relative;
+    /* background-color: #0d0d0d; */
+    border-radius: 4px;
+
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+  }
+
+
+  .ornate-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url('../assets/ornate-border.svg');
+    pointer-events: none; 
+    z-index: 10; 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ornate-card:hover {
+    transform: translateY(-6px);
+    box-shadow: #DFA577; /* PLEASE MAKE SURE TO CHEAK THIS*/
+  }
+  
+  /* --- COLLAPSED STATE --- */
+  .ornate-card.collapsed {
+    width: 300px;
+    padding: 16px;
+    cursor: pointer;
+  }
+  
+  .card-image-container {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 2px;
+    margin-bottom: 14px;
+
+  }
+  
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  .ornate-card.collapsed:hover .card-image-container img {
+    transform: scale(1.04);
+  }
+  
+  .card-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+
+  }
+  
+  .card-price-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 28px; 
+
+    background-image: url('../assets/price-badge-border.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%; 
+    
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+  
+  /* --- EXPANDED STATE --- */
+  .ornate-card.expanded {
+    width: 100%;
+    max-width: 760px;
+    padding: 28px;
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 160, 89, 0.15);
+  }
+  
+  .card-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+ 
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .card-close-btn:hover {
+    color: #fff;
+  }
+  
+  .card-expanded-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  
+  /* --- GALLERY SECTION --- */
+  .gallery-layout {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .thumbnails-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .thumbnail-thumb {
+    /* width: 56px;
+    height: 56px; */
+    width: 9.75rem;
+height: 8.125rem;
+    background: none;
+    border: 1px solid #DFA577;
+
+border-radius: 0.5rem;
+    padding: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+  }
+  
+  .thumbnail-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .thumbnail-thumb:hover {
+    opacity: 0.9;
+  }
+  
+  /* Active Thumbnail Glow Effect */
+  .thumbnail-thumb.active-glow {
+    opacity: 1;
+
+    transform: scale(1.05);
+  }
+  
+  .active-preview-container {
+    flex: 1;
+    height: 280px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .active-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* --- DETAILS SECTION --- */
+  .details-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .description-title {
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  
+  .specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #FFF;
+    font-family: "Playfair Display";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: all-small-caps;
+    letter-spacing: 0.23rem;
+  }
+  
+  .inquire-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+
+    color: #0d0d0d;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .inquire-btn:hover {
+
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  }
