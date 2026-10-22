@@ -8,7 +8,12 @@ Deployed Site: [https://main.d3ucowdklyc27z.amplifyapp.com/]
 
 Built with a high-efficiency front-end and a modular Express/MongoDB backend, the design balances dark goth aesthetics with art-deco flourishes—creating a digital space that feels like a natural extension of her studio.
 
-**📜 The Backstory:** I've been a client of this artist for years. Her studio doesn't feel like a corporate shop—it feels like *her* space, and she makes you feel completely at home in it. This site started as a "hey what if..." during a holiday over a glass of red wine, and turned into a full-scale architectural build. She knows it's happening and is fully on board :D
+<details>
+<summary><b>📜 Little Backstory</b></summary>
+<br>
+
+I've been a client of this artist for years. Her studio doesn't feel like a corporate shop—it feels like *her* space, and she makes you feel completely at home in it. This site started as a "hey what if..." during a holiday over a glass of red wine, and turned into a full-scale architectural build. She knows it's happening and is fully on board :D
+</details>
 
 ---
 
@@ -21,6 +26,7 @@ Built with a high-efficiency front-end and a modular Express/MongoDB backend, th
 * **Auto-Updating Instagram Showcase:** Custom grid container designed for live portfolio updates via embed widgets or cached Graph API posts.
 * **Art-Deco UI Architecture:** Handcrafted custom styles, keyframe animations, and dark-mode frames built for high-scannability and aesthetic flair.
 
+---
 
 ## ✨ Tech Stack
  
