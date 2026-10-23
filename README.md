@@ -8,11 +8,16 @@ Deployed Site: [https://main.d3ucowdklyc27z.amplifyapp.com/]
 
 Built with a high-efficiency front-end and a modular Express/MongoDB backend, the design balances dark goth aesthetics with art-deco flourishes—creating a digital space that feels like a natural extension of her studio.
 
-**📜 The Backstory:** I've been a client of this artist for years. Her studio doesn't feel like a corporate shop—it feels like *her* space, and she makes you feel completely at home in it. This site started as a "hey what if..." during a holiday over a glass of red wine, and turned into a full-scale architectural build. She knows it's happening and is fully on board :D
+<details>
+<summary><b>📜 Little Backstory</b></summary>
+<br>
+
+I've been a client of this artist for years. Her studio doesn't feel like a corporate shop—it feels like *her* space, and she makes you feel completely at home in it. This site started as a "hey what if..." during a holiday over a glass of red wine, and turned into a full-scale architectural build. She knows it's happening and is fully on board :D
+</details>
 
 ---
 
-## 🌿 Planned Features
+## 🌿 Key Features
  
 * **3-Step Smart Booking Wizard:** Multi-stage client intake form supporting dynamic UI branching for standard tattoos vs. cover-ups/reworks.
 * **Multipart Media Uploads:** Integrated `multer` binary pipeline allowing clients to upload reference pictures and existing tattoo photos directly into server storage.
@@ -21,6 +26,7 @@ Built with a high-efficiency front-end and a modular Express/MongoDB backend, th
 * **Auto-Updating Instagram Showcase:** Custom grid container designed for live portfolio updates via embed widgets or cached Graph API posts.
 * **Art-Deco UI Architecture:** Handcrafted custom styles, keyframe animations, and dark-mode frames built for high-scannability and aesthetic flair.
 
+---
 
 ## ✨ Tech Stack
  
@@ -56,7 +62,17 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 (/uploads/unique-file.png)                 Pre-formatted Client Payload
 ```
 
-## Illuminating on your machine
+## 🌿 Deployment Architecture
+
+The application is deployed on Amazon Web Services (AWS) using a decoupled full-stack architecture:
+
+- **Frontend:** Hosted on **AWS Amplify** with automated CI/CD builds connected to the main Git branch.
+- **Backend:** Hosted on **AWS Elastic Beanstalk** (Node.js runtime environment).
+- **Database:** Managed **MongoDB Atlas** cluster connected securely via URI environment variables.
+
+🔗 **Live Production Site:** [illuminated-by-artistry.amplifyapp.com](https://main.d3ucowdklyc27z.amplifyapp.com/)
+
+## ✨ Illuminating on your machine
 
 1. **Clone the repository:**
 ```bash
@@ -69,7 +85,17 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 ```bash
    cd server
 npm install
-# Create a .env file and add your MONGO_URI
+```
+
+* Create a .env file in (/server)
+```bash
+PORT=5050
+MONGO_URI=your_mongodb_connection_string
+INSTAGRAM_ACCESS_TOKEN=your_token_here
+```
+
+  Start the backend server:
+```bash
 npm start
 ```
  
@@ -77,6 +103,16 @@ npm start
 ```bash
    cd client
 npm install
+```
+
+ * Create a .env file in /client (optional for local dev):
+ ```bash
+VITE_API_URL=http://localhost:5050
+VITE_WHATSAPP_NUMBER=27XXXXXXXXX
+```
+
+Start the development server:
+```bash
 npm run dev
 ```
 
