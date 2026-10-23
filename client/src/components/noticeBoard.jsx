@@ -40,8 +40,9 @@ export default function NoticeBoard() {
 
                     <p>
                         to all of my amazing clients who continue to support and respect the boundaries 
-                        I have put in place. Your trust and support mean the world to me. <br /> 
-                        <strong>ILLUMINATED BY ARTISTRY</strong>
+                        I have put in place. Your trust and support mean the world to me. </p>
+                        <p className="sign-off">
+                        - <strong>ILLUMINATED BY ARTISTRY</strong>
                     </p>
                 </div>
 

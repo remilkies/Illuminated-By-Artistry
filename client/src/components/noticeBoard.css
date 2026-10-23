@@ -86,7 +86,7 @@ height: 4.0625rem;
 }
 
 .notice-body{
-    color: #FFF;
+    color: #F6E3D4;
 text-align: center;
 font-family: "Playfair Display";
 font-size: 1.25rem;
@@ -96,9 +96,11 @@ line-height: normal;
 
 
 display: flex;
-width: 55rem;
+max-width: 55rem;
 flex-direction: column;
 align-items: center;
+
+text-wrap: balance;
 
 }
 
@@ -113,6 +115,7 @@ font-weight: bold;
     text-transform: uppercase;
 line-height: normal;
 font-variant: all-small-caps;
+
 }
 
 .thanks{
@@ -127,6 +130,8 @@ font-variant: all-small-caps;
 
 display: flex;
 gap: 1.3rem;
+
+margin: -.5rem 0;
 }
 
 .heart{
@@ -135,3 +140,7 @@ height: 3.1875rem;
 /* transform: rotate(10.587deg); */
 margin-top: .5rem;
 }
+
+ .sign-off{
+    margin-top: 1rem;
+ }
