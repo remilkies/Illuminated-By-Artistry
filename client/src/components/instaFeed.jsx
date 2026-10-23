@@ -41,7 +41,7 @@ export default function InstaFeed() {
             <div className="container posts-container">
                 <Row className="justify-content-center g-4">
                     {posts.map((post, index) => (
-                        /* Use md={4} so 3 cards comfortably fill 12 columns (4 + 4 + 4 = 12) */
+                        
                         <Col xs={12} md={4} key={post.id || index} className="insta-card-wrapper d-flex justify-content-center">
                             <a 
                                 href={post.permalink || "https://www.instagram.com/"} 
