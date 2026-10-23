@@ -11,13 +11,8 @@
     position: relative;
     width: 100%;
 
-    background-image: url('../assets/noticeBoard.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
     /* for the tesxt to sit nice and snug like a bug in a rug */
-    padding: 8rem 5rem 6rem 5rem;
+    padding: 2rem 1rem 2rem 1rem;
     box-sizing: border-box;
 
     display: flex;
@@ -28,29 +23,65 @@
 
 }
 
-.notice-title{
-    color: #F6E3D4;
-font-family: "Playfair Display";
-font-size: 3rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-font-variant: all-small-caps;
+.notice-board::before {
+    content: '';
+    position: absolute;
+    top: 17px;
+    bottom: 17px;
+    left: -40px;
+    right: -40px;
+    background-image: url('../assets/noticeBoard.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none; 
+    z-index: 0; 
 
-display: flex;
-align-items: center;
-gap: 0.875rem;
-align-self: stretch;
+}
+
+.notice-header, .notice-body, .divider{
+    z-index: 10;
+}
+
+.notice-header{
+    display: flex;
+    width: 29.36931rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notice-title{
+    margin-top: 8rem;
+    color: #F6E3D4;
+
+    font-family: "Playfair Display";
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: all-small-caps;
+
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+
+}
+
+.notice-title .title-flourish{
+    width: 5.40338rem;
+height: 4.0625rem;
 }
 
 .notice-subtitle{
+    margin-top: -1rem;
     color: #F6E3D4;
-font-family: "Playfair Display";
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-font-variant: all-small-caps;
+    text-align: center;
+    font-family: "Playfair Display";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: all-small-caps;
 }
 
 .notice-body{
@@ -61,20 +92,20 @@ font-size: 1.25rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-font-variant: all-small-caps;
+
 
 display: flex;
-width: 55.6875rem;
+width: 55rem;
 flex-direction: column;
 align-items: center;
-gap: 0.625rem;
+
 }
 
 .female-only{
     color: #DCB993;
 text-align: center;
 font-family: "Playfair Display";
-font-size: 2.25rem;
+font-size: 2.5rem;
 font-style: normal;
 font-weight: bold;
     letter-spacing: 2px;
@@ -85,13 +116,13 @@ font-variant: all-small-caps;
 
 .thanks{
     color: #DCB993;
-text-align: center;
-font-family: Splash;
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-font-variant: all-small-caps;
+    text-align: center;
+    font-family: Splash;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
 
 display: flex;
 gap: 1.3rem;
@@ -100,5 +131,6 @@ gap: 1.3rem;
 .heart{
     width: 2.625rem;
 height: 3.1875rem;
-transform: rotate(10.587deg);
+/* transform: rotate(10.587deg); */
+margin-top: .5rem;
 }

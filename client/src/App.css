@@ -200,6 +200,11 @@ a, a:visited, a:hover, a:active {
     color: inherit;
 }
 
+#notice{
+    /* transform: translateY(-3.5rem); */
+    margin-top: -3.5rem;
+}
+
 /* --- ✨MOBILE RESPONSIVITY✨ --- */
 @media (max-width: 768px) {
     .hanging-starburst {

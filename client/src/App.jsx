@@ -16,11 +16,11 @@ import whatsappIcon from '/whatsapp-icon.svg';
 import instagramIcon from '/instagram-icon.svg';
 import locationIcon from '/location-icon.svg';
 
+import NoticeBoard from "./components/noticeBoard";
 import InstaFeed from './components/instaFeed';
 
 // import Navbar from './components/Navbar';
-// import Pricing from './components/Pricing';
-// import Bio from './components/Bio';
+// import Bio from './components/Bio'; 
 import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
 
@@ -91,7 +91,9 @@ export default function App() {
   </div>
 
         </section>
-        
+        <section id="notice">
+      <NoticeBoard/>
+        </section>
         <section>
           <InstaFeed/>
         </section>

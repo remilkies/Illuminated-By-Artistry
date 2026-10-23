@@ -1,5 +1,5 @@
 import React from "react";
-import noticeBoard from "../assets/noticeBoard.svg";
+
 import titleFlourish from '../assets/titleFlourish.svg';
 import divider from "../assets/divider.svg";
 import heart from "../assets/heart.svg";
