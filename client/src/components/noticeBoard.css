@@ -1,19 +1,67 @@
-.notice-container{
-    min-height: 100vh;
+/* becuase of the way i'm making this mobile responisve i need to clamp everything so that the streatching doesn't cause a natural disaster */
+
+/* ================================================
+    Quick little clamp crashcoarse
+    clamp(MIN, WANTED, MAX) is a leash fro sizzes:
+    - "never go smaller than MIN"
+    - "never go bigger than MAX"
+    - "in between, follow WANTED"
+    So when the screen shrinks, the text shrinks but the leash stops it from turning into ant text or ginat text. natural disaster averted o7
+     ================================================ */
+
+.notice-container {
+    /* --s is OUR OWN potion strength. a custom variable.
+       1 = full size decorations, 0.42 = tiny little decorations.
+       every size below gets multiplied by it, so changing this ONE number
+       shrinks the whole board's decor in one go. one spell, many effects. >:D */
+    --s: 1;
+    /*multiplies every decoration size at once so corners shrink together at the breakpoints and the boarder widths always match the border-image widths >:D*/
+
+    /* min-height: 100vh; */
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    /* align-items: center; */
+    padding: 0 2rem 2rem;
+    margin-top: 3.4rem;
 }
 
-.notice-board{
+.notice-board {
     position: relative;
     width: 100%;
+    max-width: 64rem;
 
-    /* for the tesxt to sit nice and snug like a bug in a rug */
-    padding: 2rem 1rem 2rem 1rem;
+    /* for the tesxt to sit nice and snug like a bug in a rug 
+    so the text
+    doesn't crash into the corner leaves. order: top, sides, bottom.
+    calc(48px * var(--s)) = "48px, but shrunk by the potion strength" */
+
+    padding: calc(48px * var(--s)) calc(90px * var(--s)) calc(80px * var(--s));
     box-sizing: border-box;
+
+    /* the real border only reserves space: chains on top, thin lines elsewhere
+       (150 = where the board's top edge sits in the svg, 12/6 = its side/bottom lines) */
+    border-style: solid;
+    border-color: transparent;
+    border-width: calc(150px * var(--s)) calc(12px * var(--s)) calc(12px * var(--s)) calc(6px * var(--s));
+
+    border-image-source: url('../assets/noticeBoard.svg');
+
+    /* cuts the svg into a tic-tac-toe type grid (4corners, 4 edges and the middle) so we can keep the pretty borders i drew from warping and making the leaves stretchy
+    numbers are top right bottom left, measured in the svg's own pixels.
+       I picked them so each corner of leaves fits entirely inside its piece
+       and doesn't get cut in half.
+       "fill" = keep the middle piece too (i truly put myself through new inventive forms of pain everyday don't i :D */
+    border-image-slice: 265 180 150 170 fill;
+
+    /* corners are drawn at this size, scaled together so leaves keep their proportions. >:D*/
+    border-image-width: calc(265px * var(--s)) calc(180px * var(--s)) calc(150px * var(--s)) calc(170px * var(--s));
+
+    /* stretch = the EDGES and middle are allowed to stretch like taffy.
+       corners are never stretched. that's the whole magic:
+       the board grows taller and the leaves stay pretty. */
+    border-image-repeat: stretch;
 
     display: flex;
     flex-direction: column;
@@ -23,39 +71,27 @@
 
 }
 
-.notice-board::before {
-    content: '';
-    position: absolute;
-    top: 17px;
-    bottom: 17px;
-    left: -40px;
-    right: -40px;
-    background-image: url('../assets/noticeBoard.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    pointer-events: none; 
-    z-index: 0; 
-
-}
-
-.notice-header, .notice-body, .divider{
+.notice-header,
+.notice-body,
+.divider {
     z-index: 10;
 }
 
-.notice-header{
+.notice-header {
     display: flex;
-    width: 29.36931rem;
+    width: 100%;
+    max-width: 29.36931rem;
     flex-direction: column;
     align-items: center;
 }
 
-.notice-title{
-    margin-top: 8rem;
+.notice-title {
+    /* margin-top: 8rem; */
     color: #F6E3D4;
 
     font-family: "Playfair Display";
-    font-size: 5rem;
+    /* title leash: never under 2rem, never over 5rem, otherwise 8% of screen width */
+    font-size: clamp(2rem, 8vw, 5rem);
     letter-spacing: 4px;
     font-style: normal;
     font-weight: 400;
@@ -64,83 +100,108 @@
 
     display: flex;
     align-items: center;
-    gap: 0.875rem;
+    /* the gap between the flourishes and the word shrinks too (0.5rem to 0.875rem) */
+    gap: clamp(0.5rem, 1.5vw, 0.875rem);
 
 }
 
-.notice-title .title-flourish{
-    width: 5.40338rem;
-height: 4.0625rem;
+.notice-title .title-flourish {
+    width: clamp(1.75rem, 7vw, 5.4rem);
+    height: auto
 }
 
-.notice-subtitle{
+.notice-subtitle {
     margin-top: -1rem;
     color: #F6E3D4;
     text-align: center;
     font-family: "Playfair Display";
-    font-size: 1.5rem;
-    font-style: normal;
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
     font-weight: 400;
     line-height: normal;
     font-variant: all-small-caps;
 }
 
-.notice-body{
+.notice-body {
     color: #F6E3D4;
-text-align: center;
-font-family: "Playfair Display";
-font-size: 1.25rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    text-align: center;
+    font-family: "Playfair Display";
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.4;
 
 
-display: flex;
-max-width: 55rem;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    max-width: 55rem;
+    flex-direction: column;
+    align-items: center;
 
-text-wrap: balance;
+    text-wrap: balance;
 
 }
 
-.female-only{
+.female-only {
     color: #DCB993;
-text-align: center;
-font-family: "Playfair Display";
-font-size: 2.5rem;
-font-style: normal;
-font-weight: bold;
+    /* text-align: center; */
+    font-family: "Playfair Display";
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-style: normal;
+    font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
-line-height: normal;
-font-variant: all-small-caps;
+    line-height: normal;
+    font-variant: all-small-caps;
 
 }
 
-.thanks{
+.thanks {
     color: #DCB993;
-    text-align: center;
+    /* text-align: center; */
     font-family: Splash;
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 
 
-display: flex;
-gap: 1.3rem;
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1.3rem);
 
-margin: -.5rem 0;
+    margin: -0.5rem 0;
 }
 
-.heart{
-    width: 2.625rem;
-height: 3.1875rem;
-/* transform: rotate(10.587deg); */
-margin-top: .5rem;
+.heart {
+    width: clamp(1.75rem, 6vw, 2.625rem);
+    height: auto;
+    /* transform: rotate(10.587deg); */
+    margin-top: 0.5rem;
 }
 
- .sign-off{
+.sign-off {
     margin-top: 1rem;
- }
+}
+
+/* ---- MOBILE RESPONSIVITY ----- 
+ shrink the decor and text wraps while the board grows taller
+ only change --s in here. everything that uses var(--s)
+ (the border widths, the corners, the padding) shrinks automatically.
+ one number, whole board >:D */
+
+@media (max-width: 992px) {
+    .notice-container {
+        --s: 0.75;
+    }
+}
+
+@media (max-width: 768px) {
+    .notice-container {
+        --s: 0.55;
+        padding: 0 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .notice-container {
+        --s: 0.42;
+    }
+}
