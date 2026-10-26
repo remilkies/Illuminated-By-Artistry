@@ -93,21 +93,46 @@ html, body {
 }
 
 .hero-logo-container {
+    width: 22rem; 
+    height: 22rem;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.hero-logo-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-image: url(./assets/heroLogoBoder.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 27.0625rem;
-    height: 23.21994rem;
+    pointer-events: none; 
+    z-index: 10;
+
+
+}
+
+.hero-logo{
+    border-radius: 50%;
     display: flex;
-    align-content: center;
     justify-content: center;
+    align-items: flex-start;
+    width: 20rem;
+    height: 20rem;
+    overflow: hidden;
 }
 
 .logo-icon {
-    width: 15rem;
+    width: 15rem; 
     height: auto;
-    margin-top: 1rem;
+    object-fit: scale-down;
+    padding: 1rem;
+    z-index: 1;  
 }
 
 .hero-title {
@@ -169,7 +194,7 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    text-decoration: none !important; /* Removes blue/purple link underlines */
+    text-decoration: none !important;
     color: #DCB993 !important;
     transition: opacity 0.3s ease;
 }

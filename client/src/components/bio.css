@@ -1,0 +1,57 @@
+.bio-blurb {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.bio-header {
+    text-align: start;
+    height: 3.75rem;
+    align-self: stretch;
+}
+
+.bio-header h3{
+    text-align: center;
+font-family: "Playfair Display";
+font-size: 2rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+font-variant: all-small-caps;
+
+background: linear-gradient(90deg, #DCB993 0%, #F6E3D4 50%, #DCB993 100%);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.bio-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    align-self: stretch;
+}
+
+.bio-quote {
+    color: #DFA577;
+    text-align: center;
+    font-family: "Playfair Display";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: all-small-caps;
+}
+.bio-body{
+    color: #FFF;
+font-family: "Playfair Display";
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+align-self: stretch;
+}

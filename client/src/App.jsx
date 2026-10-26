@@ -7,10 +7,10 @@ import { Col } from 'react-bootstrap';
 import hangingStarbusrt from './assets/hangingStarburst.svg';
 import hangingDecor from './assets/hangingDecor.svg';
 
-import ibaLogo from './assets/iba-logo.svg';
+import ibaLogo from '/iba-logo.svg';
 
 import moonCrest from './assets/moonCrest.svg';
-import captionFlourih from './assets/captionFlourish.svg';
+import captionFlourish from './assets/captionFlourish.svg';
 
 import whatsappIcon from '/whatsapp-icon.svg';
 import instagramIcon from '/instagram-icon.svg';
@@ -23,6 +23,7 @@ import InstaFeed from './components/instaFeed';
 // import Bio from './components/Bio'; 
 import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
+import Footer from "./components/footer";
 
 export default function App() {
 
@@ -44,7 +45,9 @@ export default function App() {
 
   <div className="hero-content">
     <div className='hero-logo-container'>
+      <div className="hero-logo">
       <img src={ibaLogo} alt="IBA Logo" className="logo-icon" />
+      </div>
     </div>
     
     <div className="hero-title">
@@ -54,7 +57,7 @@ export default function App() {
       </div>
     <h2 className="hero-subtitle">By Artistry</h2>
     <div  className="hero-tagline">
-    <img src={captionFlourih} alt='caption flourish' className='caption-flourish left'/><p>Piercings. Tattoos. Beauty</p><img src={captionFlourih} alt='caption flourish' className='caption-flourish right'/>
+    <img src={captionFlourish} alt='caption flourish' className='caption-flourish left'/><p>Piercings. Tattoos. Beauty</p><img src={captionFlourish} alt='caption flourish' className='caption-flourish right'/>
     </div>
     <div className='social-icons'>
   <a 
@@ -118,6 +121,8 @@ export default function App() {
           
           </div>
         </section>
+
+        <Footer/>
       </main>
     </div>
   );
