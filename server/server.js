@@ -112,7 +112,7 @@ const PORT = process.env.PORT || 5050;
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('🌿 MongoDB Connected Successfully!');
-    app.listen(PORT, () => console.log(`Illuminating on port ${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => console.log(`Illuminating on port ${PORT}`));
   })
   .catch(err => console.error('MongoDB connection error:', err));
 
