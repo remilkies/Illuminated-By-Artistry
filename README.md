@@ -64,13 +64,24 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 
 ## 🌿 Deployment Architecture
 
-The application is deployed on Amazon Web Services (AWS) using a decoupled full-stack architecture:
+To satisfy multi-platform deployment and high-availability requirements, the application utilizes a robust dual-cloud architecture spanning **Amazon Web Services (AWS)** and **Microsoft Azure**:
 
-- **Frontend:** Hosted on **AWS Amplify** with automated CI/CD builds connected to the main Git branch.
-- **Backend:** Hosted on **AWS Elastic Beanstalk** (Node.js runtime environment).
-- **Database:** Managed **MongoDB Atlas** cluster connected securely via URI environment variables.
+- **Primary Cloud Stack (AWS):**
+  - **Frontend:** Hosted on **AWS Amplify** with automated global CDN edge caching, SSL encryption, and CI/CD builds connected to the main Git branch.
+  - **Backend API:** Hosted on **AWS Elastic Beanstalk** (Node.js runtime environment).
+   (shoutout to **Render** for hosting and keeping the server humming smoothly while we wait to lock down our custom domain! :P).
 
-🔗 **Live Production Site:** [illuminated-by-artistry.amplifyapp.com](https://main.d3ucowdklyc27z.amplifyapp.com/)
+- **Secondary Cloud Stack (Microsoft Azure):**
+  - **Frontend:** Deployed via **Azure Static Web Apps** utilizing automated GitHub Actions CI/CD workflows and Vite build targets (`dist`).
+  - **Backend API:** Hosted on **Azure App Service** (Node.js 22 LTS Linux runtime) managed via custom GitHub Actions workflows and environment-secured deployment slots.
+
+- **Database & Telemetry:**
+  - **Database:** Centralized managed **MongoDB Atlas** cluster connected securely via URI environment variables and network whitelisting.
+  - **Analytics & Tracking:** Integrated **Google Analytics 4 (GA4)** and manual XML sitemap indexing via **Google Search Console (GSC)**.
+
+🔗 **Live Production Links:**
+- **AWS Amplify:** [illuminated-by-artistry.amplifyapp.com](https://main.d3ucowdklyc27z.amplifyapp.com/)
+- **Azure Web App:** [illuminated-by-artistry.azurewebsites.net](https://polite-moss-086919910.4.azurestaticapps.net)
 
 ## ✨ Illuminating on your machine
 
