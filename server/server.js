@@ -10,11 +10,11 @@ import Booking from './models/Booking.js'; // run node, and if the thing complai
 import bookingRoutes from './routes/bookingRoutes.js';
 
 //sorry i'm not makeing a whole modal file for this T-T
-const subscribeSchema = new mongoose.Schema({
+const subscriberSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   subscribedAt: { type: Date, default: Date.now }
 });
-const Subscribe = mongoose.model('Subscribe', subscribeSchema);
+const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -129,10 +129,10 @@ mongoose.connect(process.env.MONGO_URI)
 // subscribe ENDPOINTS
 // ------------------------------------------------------------------
 
-app.post('/api/subscribe', async (req, res) => {
+app.post('/api/subscribers', async (req, res) => {
   try {
     const { email } = req.body;
-    const newSubscriber = new Subscribe({ email });
+    const newSubscriber = new Subscriber({ email });
     await newSubscriber.save();
     res.status(201).json({ message: "Subscribed successfully!" });
   } catch (err) {
