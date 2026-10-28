@@ -53,6 +53,7 @@ export default function Footer() {
                     </div>
 
                     <div className="contact-link">
+                        
                         <img src={whatsappIcon} className='contact-icon' alt='Whatsapp' />
                         <p>068 042 4933</p>
                     </div>
