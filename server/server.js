@@ -9,6 +9,12 @@ import Booking from './models/Booking.js'; // run node, and if the thing complai
 // import FlashDesign from './models/FlashDesign.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 
+//sorry i'm not makeing a whole modal file for this T-T
+const subscribeSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+  subscribedAt: { type: Date, default: Date.now }
+});
+const Subscribe = mongoose.model('Subscribe', subscribeSchema);
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +28,8 @@ const allowedOrigins = [
   // 'https://illuminatedbyartistry.com', // Production domain once we have a custom domain set up
   // 'https://www.illuminatedbyartistry.com', // Production domain with www
   'http://localhost:5173',
-  'https://main.d3ucowdklyc27z.amplifyapp.com'
+  'https://main.d3ucowdklyc27z.amplifyapp.com',
+  'https://polite-moss-086919910.4.azurestaticapps.net'
 ];
 
 app.use(cors({
@@ -57,36 +64,36 @@ app.use('/api/bookings', bookingRoutes);
 
 app.get('/api/instagram', async (req, res) => {
   try {
-      const token = process.env.INSTAGRAM_ACCESS_TOKEN;
-      
-      // Return empty array gracefully if token isn't set yet during local testing
-      if (!token) {
-          console.warn("INSTAGRAM_ACCESS_TOKEN missing in .env file.");
-          return res.json([]);
-      }
+    const token = process.env.INSTAGRAM_ACCESS_TOKEN;
 
-      const response = await fetch(
-          `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=6&access_token=${token}`
-      );
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-          throw new Error(data.error?.message || 'Failed to fetch Instagram feed');
-      }
+    // Return empty array gracefully if token isn't set yet during local testing
+    if (!token) {
+      console.warn("INSTAGRAM_ACCESS_TOKEN missing in .env file.");
+      return res.json([]);
+    }
 
-      // Map posts and resolve video thumbnails so raw images load nicely into your frame component
-      const formattedPosts = data.data.map(post => ({
-          id: post.id,
-          imageUrl: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
-          caption: post.caption || 'Illuminated By Artistry',
-          permalink: post.permalink
-      }));
+    const response = await fetch(
+      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=6&access_token=${token}`
+    );
 
-      res.json(formattedPosts);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error?.message || 'Failed to fetch Instagram feed');
+    }
+
+    // Map posts and resolve video thumbnails so raw images load nicely into your frame component
+    const formattedPosts = data.data.map(post => ({
+      id: post.id,
+      imageUrl: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
+      caption: post.caption || 'Illuminated By Artistry',
+      permalink: post.permalink
+    }));
+
+    res.json(formattedPosts);
   } catch (err) {
-      console.error("Instagram Feed Error:", err.message);
-      res.status(500).json({ error: err.message });
+    console.error("Instagram Feed Error:", err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -100,7 +107,7 @@ app.get('/api/bookings/check-date/:date', async (req, res) => {
     const { date } = req.params;
     const bookings = await Booking.find({ requestedDate: date, status: { $ne: 'cancelled' } });
     const bookedSlots = bookings.map(b => b.timeSlot);
-    
+
     res.json({ date, bookedSlots });
   } catch (error) {
     res.status(500).json({ error: 'Failed to check slot availability' });
@@ -117,6 +124,21 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 
+
+// ------------------------------------------------------------------
+// subscribe ENDPOINTS
+// ------------------------------------------------------------------
+
+app.post('/api/subscribe', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const newSubscriber = new Subscribe({ email });
+    await newSubscriber.save();
+    res.status(201).json({ message: "Subscribed successfully!" });
+  } catch (err) {
+    res.status(400).json({ error: "Email already subscribed or invalid." });
+  }
+});
 // ------------------------------------------------------------------
 // FLASH & PORTFOLIO ENDPOINTS (Saved for later)
 // ------------------------------------------------------------------

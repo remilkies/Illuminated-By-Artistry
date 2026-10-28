@@ -159,7 +159,7 @@
     overflow-wrap: anywhere; 
 }
 
-/* --- SMALL SCREENS --- */
+
 @media (max-width: 767px) {
     .footer-img {
         width: clamp(9rem, 45vw, 13rem);

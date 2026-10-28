@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./bookingForm.css"
 
 import titleFlourish from '../assets/titleFlourish.svg';
+
 const PIERCING_OPTIONS = {
     "Facial Piercings": [
         "Nose (Surgical Steel) - R300",
@@ -46,6 +47,8 @@ export default function BookingForm() {
 
     // Track which step/screen we are on (1, 2, or 3)
     const [step, setStep] = useState(1);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [pendingWhatsAppUrl, setPendingWhatsAppUrl] = useState("");
 
     // Unified Form State
     const [formData, setFormData] = useState({
@@ -98,7 +101,7 @@ export default function BookingForm() {
         setStep((prev) => Math.min(prev + 1, 3));
     };
 
-    // 🦇 Yeet data to MongoDB and trigger WhatsApp redirect
+    // 🦇 Yeet data to MongoDB and trigger custom modal + WhatsApp setup
     const handleFinalBooking = async (e) => {
         e.preventDefault();
 
@@ -106,7 +109,6 @@ export default function BookingForm() {
         data.append("name", formData.name);
         data.append("phone", formData.phone);
         data.append("appointmentType", formData.appointmentType);
-
 
         if (formData.appointmentType === "Tattoo") {
             data.append("isCoverUp", formData.isCoverUp);
@@ -130,7 +132,6 @@ export default function BookingForm() {
         }
 
         try {
-
             const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050';
             const response = await fetch(`${API_BASE_URL}/api/bookings`, {
                 method: 'POST',
@@ -142,12 +143,10 @@ export default function BookingForm() {
             if (response.ok) {
                 const waNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
 
-
                 const activeImageLink = result.referenceImgUrl || result.existingTattooImgUrl || result.removalImgUrl;
                 const imageLinkText = activeImageLink
                     ? `\n✦ *Reference/Current Image:* ${activeImageLink}`
                     : ``;
-
 
                 let serviceDetails = "";
                 if (formData.appointmentType === "Tattoo") {
@@ -172,8 +171,11 @@ export default function BookingForm() {
                     `\n\nLooking forward to connecting and bringing this piece to life. ❤️`
                 );
 
-                window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
-                alert("Booking submitted successfully! 🦇✨");
+                const generatedWhatsAppUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+                setPendingWhatsAppUrl(generatedWhatsAppUrl);
+                
+
+                setShowSuccessModal(true);
             } else {
                 alert(`Error saving booking: ${result.error}`);
             }
@@ -183,7 +185,15 @@ export default function BookingForm() {
         }
     };
 
+    const handleModalConfirm = () => {
+        setShowSuccessModal(false);
+        if (pendingWhatsAppUrl) {
+            window.open(pendingWhatsAppUrl, '_blank');
+        }
+    };
+
     return (
+        <>
         <div className="booking-form-wrapper">
             <div className="booking-card">
 
@@ -395,7 +405,7 @@ export default function BookingForm() {
                                 </>
                             )}
 
-                            {/* 3. PIERCING PATHWAY (Nested Cascading Dropdowns) */}
+                            {/* 3. PIERCING PATHWAY */}
                             {formData.appointmentType === "Piercing" && (
                                 <>
                                     <div className="booking-field">
@@ -486,5 +496,33 @@ export default function BookingForm() {
 
             </div>
         </div>
-    )
+
+        {showSuccessModal && (
+            <div className="iba-modal-overlay">
+                <div className="iba-modal-card">
+                    <div className="iba-modal-header">
+                        <img src={titleFlourish} alt="" className="iba-modal-flourish left" />
+                        <h3>Booking Received</h3>
+                        <img src={titleFlourish} alt="" className="iba-modal-flourish" />
+                    </div>
+                    
+                    <div className="iba-modal-body">
+                        <p>✦ Your booking has been successfully saved and your details are ready! Click confirm below to complete your request with us. 🦇✨</p>
+                        <p style={{ fontSize: '0.8rem', opacity: '0.75', marginTop: '0.75rem' }}>
+                            ✦ Please wait a moment after confirming as WhatsApp will open in a new window.
+                        </p>
+                    </div>
+
+                    <button 
+                        type="button" 
+                        className="iba-modal-btn"
+                        onClick={handleModalConfirm}
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        )}
+        </>
+    );
 }
