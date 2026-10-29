@@ -163,7 +163,7 @@ npm run dev
 ```
 
 <p align="left">
-<img src="/rembyte.svg" height="60px">
+<img src="/client/public/rembyte.svg" height="120px">
 <p>
  
 Created by **REMByte** <3 <br>
