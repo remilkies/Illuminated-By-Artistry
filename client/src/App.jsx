@@ -2,7 +2,7 @@
 import { useState } from "react";
 import React from 'react';
 import './App.css'
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 import hangingStarbusrt from './assets/hangingStarburst.svg';
 import hangingDecor from './assets/hangingDecor.svg';
@@ -20,7 +20,7 @@ import NoticeBoard from "./components/noticeBoard";
 import InstaFeed from './components/instaFeed';
 
 // import Navbar from './components/Navbar';
-// import Bio from './components/Bio'; 
+import Bio from './components/bio'; 
 import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
 import Footer from "./components/footer";
@@ -97,6 +97,11 @@ export default function App() {
         <section id="notice">
       <NoticeBoard/>
         </section>
+
+        <section id="bio">
+          <Bio />
+        </section>
+
         <section>
           <InstaFeed/>
         </section>
@@ -104,12 +109,9 @@ export default function App() {
           {/* <Pricing /> */}
         </section>
 
-        <section id="bio">
-          {/* <Bio /> */}
-        </section>
 
         <section id="booking">
-          <div className='row justify-content-center'>
+          <Row className='justify-content-center'>
             <Col md={6}>
 
       <PriceModal/>
@@ -119,7 +121,7 @@ export default function App() {
             <BookingForm />
             </Col>
           
-          </div>
+          </Row>
         </section>
 
         <Footer/>
