@@ -1,6 +1,8 @@
 // src/App.jsx
 import { useState } from "react";
 import React from 'react';
+
+
 import './App.css'
 import { Col, Row } from 'react-bootstrap';
 
@@ -19,29 +21,26 @@ import locationIcon from '/location-icon.svg';
 import NoticeBoard from "./components/noticeBoard";
 import InstaFeed from './components/instaFeed';
 
-// import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import Bio from './components/bio'; 
 import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
 import Footer from "./components/footer";
 
+
 export default function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="app">
-      {/* <Navbar /> */}
+
       <main className="container-fluid">
 
         <section className="hero-container">
           <img src={hangingStarbusrt} alt="Hanging Starburst" className="hanging-starburst" />
           <img src={hangingDecor} alt="Hanging Decor" className="hanging-decor" />
-  <nav className="hero-nav">
-    <a href="#home">HOME</a>
-    <a href="#pricing">PRICING</a>
-    <a href="#jewellery">JEWELLERY</a>
-    <a href="#booking">BOOK NOW</a>
-  </nav>
+  <Navbar/>
 
   <div className="hero-content">
     <div className='hero-logo-container'>

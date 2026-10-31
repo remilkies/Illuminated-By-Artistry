@@ -232,22 +232,7 @@ input[type="file"] {
     transform: scale(1.05);
 }
 
-.book-btn {
-    background-color: #e6c594;
-    color: #000;
-    border: none;
-    border-radius: 30px;
-    padding: 0.6rem 2rem;
-    font-family: "Playfair Display", serif;
-    font-weight: bold;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.book-btn:hover {
-    background-color: #fff;
-}
 
 /* Disclaimer text */
 .disclaimer-text {

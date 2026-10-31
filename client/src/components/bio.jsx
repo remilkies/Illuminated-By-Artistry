@@ -1,4 +1,5 @@
 import React from "react"
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import './bio.css'
@@ -6,6 +7,7 @@ import './bio.css'
 import ArtistProfile from '/artistProfile.JPG';
 
 export default function Bio() {
+    
     return (
 
         <Container fluid>
@@ -13,7 +15,7 @@ export default function Bio() {
                 
             <Col md={4} className="profile-wrapper">
                     <div className="artist-profile">
-                        {/* Fixed React style object syntax here */}
+                        
                         <svg width="0" height="0" style={{ position: 'absolute' }}>
                           <defs>
                             <clipPath id="profile-clip" clipPathUnits="objectBoundingBox">
@@ -40,7 +42,7 @@ export default function Bio() {
                         <p className="bio-body">At Illuminated By Artistry, body art is a journey of self-expression, connection, and healing. Whether you’re celebrating a new chapter, honouring a memory, or reclaiming your confidence, each piece is crafted in a safe, intentional space designed to help you feel beautiful, empowered, and truly at home in your skin. I feel deeply privileged to be entrusted with your story &lt;3 </p>
                     </div>
 
-                    {/* <button id="bio-btn"> Meet the Artist</button> */}
+                    <button onClick={() => navigate("../pages/Artist.jsx")} className="iba-btn bio-btn"> Meet the Artist</button>
                 </Col>
                 </Row>
                 </Container>
