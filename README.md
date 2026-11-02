@@ -99,7 +99,7 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-To satisfy multi-platform deployment and high-availability requirements, the application utilizes a robust dual-cloud architecture spanning **Amazon Web Services (AWS)** and **Microsoft Azure**:
+The application utilizes a robust dual-cloud architecture spanning **Amazon Web Services (AWS)** and **Microsoft Azure**:
 
 - **Primary Cloud Stack (AWS):**
   - **Frontend:** Hosted on **AWS Amplify** with automated global CDN edge caching, SSL encryption, and CI/CD builds connected to the main Git branch.
