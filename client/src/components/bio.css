@@ -1,3 +1,11 @@
+.bio-container{
+    display: flex;
+    /* flex-direction: row;
+    gap: 2rem; */
+    margin: 0 1rem;
+
+}
+
 .bio-blurb {
     display: flex;
     flex-direction: column;
@@ -8,23 +16,35 @@
 
 .bio-header {
     text-align: start;
-    height: 3.75rem;
-    align-self: stretch;
+    /* height: 3.75rem; */
+
 }
 
-.bio-header h3{
+.bio-header h3 {
     text-align: center;
-font-family: "Playfair Display";
-font-size: 2rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-font-variant: all-small-caps;
+    font-family: "Playfair Display";
+    font-size: clamp(1.1rem, 7.2cqw, 3rem);
+    font-style: normal;
+    font-weight: 400;
+    /* line-height: normal; */
+    font-variant: all-small-caps;
 
-background: linear-gradient(90deg, #DCB993 0%, #F6E3D4 50%, #DCB993 100%);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #DCB993 0%, #F6E3D4 50%, #DCB993 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bio-header p {
+    font-family: "Playfair Display";
+    font-style: normal;
+    font-weight: 400;
+    /* line-height: normal; */
+    font-variant: all-small-caps;
+    color: #F6E3D4;
+    font-size: clamp(0.7rem, 5cqw, 1.1rem);
+    margin-bottom: -1rem;
+    margin-top:2rem
 }
 
 .bio-text {
@@ -40,18 +60,26 @@ background-clip: text;
     color: #DFA577;
     text-align: center;
     font-family: "Playfair Display";
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 5cqw, 1.5rem);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     font-variant: all-small-caps;
 }
-.bio-body{
+
+.bio-body {
     color: #FFF;
-font-family: "Playfair Display";
-font-size: 1.25rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-align-self: stretch;
+    font-family: "Playfair Display";
+    font-size: clamp(0.75rem, 5cqw, 1.25rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: stretch;
+}
+
+.bio-btn{
+    background-color: #DCB993;
+    color: black;
+    font-family: "Playfair Display";
+    font: 1.25;
 }
