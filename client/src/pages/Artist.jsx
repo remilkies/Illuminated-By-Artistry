@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import titleFlourish from '../assets/titleFlourish.svg';
 import ArtistProfile from '/artistProfile.JPG';
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbarTail";
 
 // update this number when you add more artistPortfolio*.JPG o7
 const TOTAL_ARTWORK_COUNT = 12; 

@@ -20,7 +20,7 @@ import NoticeBoard from "./components/noticeBoard";
 import InstaFeed from './components/instaFeed';
 
 // import Navbar from './components/Navbar';
-// import Bio from './components/Bio'; 
+import Bio from './components/Bio'; 
 import PriceModal from "./components/priceModal";
 import BookingForm from './components/bookingForm';
 import Footer from "./components/footer";
@@ -105,7 +105,7 @@ export default function App() {
         </section>
 
         <section id="bio">
-          {/* <Bio /> */}
+          <Bio />
         </section>
 
         <section id="booking">
