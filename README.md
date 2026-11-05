@@ -22,10 +22,11 @@ I've been a client of this artist for years. Her studio doesn't feel like a corp
 * **3-Step Smart Booking Wizard:** Multi-stage client intake form supporting dynamic UI branching for standard tattoos vs. cover-ups/reworks.
 * **Multipart Media Uploads:** Integrated `multer` binary pipeline allowing clients to upload reference pictures and existing tattoo photos directly into server storage.
 * **Automated WhatsApp Payload Integration:** Form submissions automatically format client responses and trigger a direct WhatsApp deep-link message to the artist for immediate confirmation.
-* **Live Slot Availability Engine:** Custom `/api/bookings/check-date/:date` endpoint querying MongoDB to block out booked time slots dynamically.
-* **Auto-Updating Instagram Showcase:** Custom grid container designed for live portfolio updates via embed widgets or cached Graph API posts.
 * **Art-Deco UI Architecture:** Handcrafted custom styles, keyframe animations, and dark-mode frames built for high-scannability and aesthetic flair.
 
+### ✨ In-Progress
+* **Live Slot Availability Engine:** Custom `/api/bookings/check-date/:date` endpoint querying MongoDB to block out booked time slots dynamically.
+* **Auto-Updating Instagram Showcase:** Custom grid container designed for live portfolio updates via embed widgets or cached Graph API posts.
 ---
 
 ## ✨ Tech Stack
@@ -64,7 +65,41 @@ Saved to MongoDB + Disk Storage             Redirects to WhatsApp with
 
 ## 🌿 Deployment Architecture
 
-To satisfy multi-platform deployment and high-availability requirements, the application utilizes a robust dual-cloud architecture spanning **Amazon Web Services (AWS)** and **Microsoft Azure**:
+```text
+[ DUAL-CLOUD DEPLOYMENT ARCHITECTURE ]
+
+┌───────────────────────── AWS ECOSYSTEM (PRIMARY) ────────────────────────┐
+│                                                                          │
+│  Client Browser ──> AWS Amplify (Frontend CDN / SSL)                     │
+│                           │                                              │
+│                           ▼ (API Calls)                                  │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ Render API (Primary Production Endpoint)                           │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ AWS Elastic Beanstalk (Architectural Redundancy / Standby)         │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+└───────────────────────────┬──────────────────────────────────────────────┘
+                            │
+                            ▼ (Shared Persistent Layer)
+┌──────────────────────────────────────────────────────────────────────────┐
+│                      MongoDB Atlas (Centralized DB)                      │
+└───────────────────────────┬──────────────────────────────────────────────┘
+                            │
+                            ▲ (Shared Persistent Layer)
+┌───────────────────────────┴──────────────────────────────────────────────┐
+│                    AZURE ECOSYSTEM (MULTI-CLOUD)                         │
+│                                                                          │
+│  Client Browser ──> Azure Static Web Apps (Frontend via GH Actions)      │
+│                           │                                              │
+│                           ▼ (API Calls)                                  │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ Azure App Service (Backend API via GitHub Actions)                 │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+The application utilizes a robust dual-cloud architecture spanning **Amazon Web Services (AWS)** and **Microsoft Azure**:
 
 - **Primary Cloud Stack (AWS):**
   - **Frontend:** Hosted on **AWS Amplify** with automated global CDN edge caching, SSL encryption, and CI/CD builds connected to the main Git branch.
@@ -128,7 +163,7 @@ npm run dev
 ```
 
 <p align="left">
-<!-- <img src="/asabovesobelow/icons/rembyte.png" height="60px"> -->
+<img src="/client/public/rembyte.svg" height="120px">
 <p>
  
 Created by **REMByte** <3 <br>

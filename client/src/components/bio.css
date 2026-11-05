@@ -102,7 +102,7 @@
 .bio-header h3 {
     text-align: center;
     font-family: "Playfair Display";
-    font-size: clamp(1.1rem, 7.2cqw, 3rem);
+    font-size: clamp(2.8rem, 7.2cqw, 4rem);
     font-style: normal;
     font-weight: 400;
     /* line-height: normal; */
@@ -144,6 +144,7 @@
     font-weight: 400;
     line-height: normal;
     font-variant: all-small-caps;
+    text-wrap: balance;
 }
 
 .bio-body {
