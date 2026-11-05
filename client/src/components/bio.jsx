@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row } from 'react-bootstrap';
-import './bio.css'
+import './Bio.css'
 
 import ArtistProfile from '/artistProfile.JPG';
 
