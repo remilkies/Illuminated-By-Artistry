@@ -503,3 +503,7 @@ a, a:visited, a:hover, a:active {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
+#bio{
+    margin-bottom: 4rem;
+}

@@ -39,7 +39,7 @@ export default function App() {
   <nav className="hero-nav">
     <a href="#home">HOME</a>
     <a href="#pricing">PRICING</a>
-    <a href="#jewellery">JEWELLERY</a>
+    <a href="#bio">ARTIST</a>
     <a href="#booking">BOOK NOW</a>
   </nav>
 
