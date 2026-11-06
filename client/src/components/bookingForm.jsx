@@ -481,7 +481,7 @@ export default function BookingForm() {
                             &gt;
                         </button>
                     ) : (
-                        <button type="button" onClick={handleFinalBooking} className="book-btn">
+                        <button type="button" onClick={handleFinalBooking} className="iba-btn book-btn">
                             BOOK
                         </button>
                     )}

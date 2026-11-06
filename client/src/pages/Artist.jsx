@@ -1,3 +1,5 @@
+// Arist.jsx
+
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -12,7 +14,7 @@ const PORTFOLIO_ALL = Array.from({ length: TOTAL_ARTWORK_COUNT }, (_, index) => 
     const id = index + 1;
     return {
         id,
-        imageUrl: `/artistPortfolio${id}.JPG`, /
+        imageUrl: `/artistPortfolio${id}.JPG`,
     };
 }).sort((a, b) => b.id - a.id); // Descending order: highest number (newest) first
 

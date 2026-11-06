@@ -210,45 +210,6 @@ input[type="file"] {
     width: 100%;
 }
 
-.next-btn-arrow {
-    width: clamp(2.2rem, 7.5cqw, 2.75rem);
-    height: clamp(2.2rem, 7.5cqw, 2.75rem);
-    background-color: #F6E3D4;
-    color: #000000;
-    border: none;
-    border-radius: 50%;
-    font-size: 1rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    box-shadow: 0 3px 0 0 #DCB993;
-}
-
-.next-btn-arrow:hover {
-    background-color: #ffffff;
-    transform: scale(1.05);
-}
-
-.book-btn {
-    background-color: #e6c594;
-    color: #000;
-    border: none;
-    border-radius: 30px;
-    padding: 0.6rem 2rem;
-    font-family: "Playfair Display", serif;
-    font-weight: bold;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.book-btn:hover {
-    background-color: #fff;
-}
-
 /* Disclaimer text */
 .disclaimer-text {
     color: #e6c594;

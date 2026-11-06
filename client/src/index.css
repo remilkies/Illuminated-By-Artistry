@@ -1,3 +1,69 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #020403; 
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+#root {
+    background-image: url(./assets/background.svg);
+    background-position: center;
+    background-color: #020403;
+    min-height: 100vh;
+    width: 100%;
+    background-repeat: repeat-y;
+}
+
+/* ============ PAGE TRANSITION ============ */
+
+/* broswer deafult is crossfade so we're turning off the brightness blend too >;D */
+::view-transition-old(root),
+::view-transition-old(root) {
+    mix-blend-mode: normal;
+}
+
+/* OUTWARDS AND UPWARDS */
+::view-transition-old(root) {
+    animation: 0.55s cubic-bezier(0.7, 0, 0.84, 0) both page-ascend;
+}
+
+/* .55s for the thing to go away, hold the starting keframe during the delay >:D */
+::view-transition-new(root) {
+    animation: 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both page-descend;
+}
+
+@keyframes page-ascend {
+    from { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    
+}
+
+@keyframes page-descend {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .navbar {
     position: absolute;
     top: 3rem;
@@ -124,6 +190,28 @@
 
 .iba-btn:hover {
     background-color: #fff;
+}
+
+.next-btn-arrow {
+    width: clamp(2.2rem, 7.5cqw, 2.75rem);
+    height: clamp(2.2rem, 7.5cqw, 2.75rem);
+    background-color: #F6E3D4;
+    color: #000000;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 3px 0 0 #DCB993;
+}
+
+.next-btn-arrow:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
 }
 
 .placeholder-box {
