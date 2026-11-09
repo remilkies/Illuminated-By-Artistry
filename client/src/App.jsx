@@ -1,6 +1,6 @@
 // src/App.jsx
-import { useState } from "react";
-import { flushSync } from 'react-dom'
+import { useState, useRef } from "react";
+// import { flushSync } from 'react-dom'
 import React from 'react';
 import './App.css'
 import { Col } from 'react-bootstrap';
@@ -29,40 +29,95 @@ import ArtistPage from "./pages/Artist";
 
 import Footer from "./components/footer";
 
+const OUT_MS = 600; //duration for old page getting sucked
+const IN_MS = 800; //new page descends from hero section hevean
+const HERO_PEEK = 0.18;
+
 export default function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [page, setPage] = useState(home); //'home' | 'artist' //IDEA make the artist section on the hopepage a dropdown with some portfolio pieces and then you can like meet the artist (maybe a seperate sneak peak btn)
+  const [page, setPage] = useState('home'); //'home' | 'artist' //IDEA make the artist section on the hopepage a dropdown with some portfolio pieces and then you can like meet the artist (maybe a seperate sneak peak btn)
+  const [phase, setPhase] = useState('idle'); // 'idel' | 'out' | 'in'
+  const busy = useRef(false);
+  const stageRef = useRef(null);
 
-  const scrollToTarget = (nextPage, anchor) => (e) => {
+  const scrollToTarget = (anchor, behavior = 'auto') => {
+    if (anchor) document.querySelector(anchor)?.scrollIntoView({ behavior });
+    else window.scrollTo({ top: 0, behavior });
+  };
+
+  //scroll so content area sits just at the gates of hero hevean and wait for your cue
+  const scrollToStage = () =>
+    new Promise((resolve) => {
+      const target =
+        stageRef.current.getBoundingClientRect().top + window.innerHeight * HERO_PEEK;
+      if (Math.abs(window.scrollY - target) < 4) return resolve();
+      window.scrollTo({ top: target, behavior: 'smooth' });
+      const started = performance.now();
+      const check = () =>
+        Math.abs(window.scrollY - target) < 2 || performance.now() - started > 1200 //little 1.2s saftly net <3
+          ? resolve()
+          : requestAnimationFrame(check);
+      check();
+    });
+
+  const goToPage = (nextPage, anchor) => (e) => {
     e.preventDefault();
+    if (busy.current) return; //ingnore click mid-animation o7
+
 
     if (nextPage === page) {
       scrollToTarget(anchor, 'smooth');
       return;
     }
 
-    const swap = () => {
-      // flushSync UPDATE DOM RIGHT NOW so the browser can snapshot the new page
-      flushSync(() => setPage(nextPage));
+    // const swap = () => {
+    //   // flushSync UPDATE DOM RIGHT NOW so the browser can snapshot the new page
+    //   flushSync(() => setPage(nextPage));
+    //   scrollToTarget(anchor);
+    // };
+
+    // sorryy no animation for old browsers (or people who use reduce motion setting)
+    // const canAnimate =
+    //   document.startViewTransition &&
+    //   !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // if (canAnimate) document.startViewTransition(swap);
+    // else swap();
+
+    //insta swap >:D
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setPage(nextPage);
       scrollToTarget(anchor);
-    };
+      return;
+    }
 
-    const canAnimate =
-      document.startViewTransition &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    busy.current = true;
+    scrollToStage().then(() => {
+      setPhase('out'); //old page goes to hevean
+      console.log('WATCH AS I MAKE THIS PAGE DISSAPPER')
+      setTimeout(() => {
+        setPage(nextPage); //cosume change off stage
+        console.log('AND FOR MY NEXT TRICK, A NEW PAGE APPEARS')
+        setPhase('in'); //act 2: page comes from stage top o7
+        console.log('TADAAAA')
+        setTimeout(() => {
+          setPhase('idle');
+          busy.current = false;
+          if (anchor) scrollToTarget(anchor, 'smooth'); //Pricing/book now o7
+        }, IN_MS);
 
-    if (canAnimate) document.startViewTransition(swap);
-    else swap();
+      }, OUT_MS);
+    });
   };
 
   // AND THEN MAYBE WHEN YOU'RE ON ANY OTHER PAGE THEN THE BOOKING POPS UP AS A MODAL INSTEAD >:D
 
 
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-    setPage(2);
-  }
+  // const handlePageChange = (newPage) => {
+  //   setPage(newPage);
+  //   setPage(2);
+  // }
 
   return (
     <div className="app">
@@ -76,16 +131,16 @@ export default function App() {
 
           <nav className="hero-nav">
             <a className={`nav-btn ${page === 'home' ? 'active' : ''}`}
-              href="#home" onClick={goToPage('home')}>HOME</a>
+              onClick={goToPage('home')}>HOME</a>
 
             <a className="nav-btn"
-              href="#pricing" onClick={goToPage('home', '#pricing')}>PRICING</a>
+              onClick={goToPage('home', '#pricing')}>PRICING</a>
             {/* <a className={`nav-btn ${page === 'jewellary' ? 'active : ''}`}
       href="#jewellary" onClick={goToPage('Jewellary')}>JEWALLARY</a> */}
-            <a className={`nav-btn ${page === 2 ? 'active' : ''}`} onClick={() => setPage(2)} id="artist-btn" href="./pages/Artist.jsx">ARTIST</a>
+            <a className={`nav-btn ${page === 'artist' ? 'active' : ''}`} onClick={() => goToPage('artist')} id="artist-btn">ARTIST</a>
             {/* maybe make the booking btn sticky in the bottom right corner o7 */}
             <a className="nav-btn"
-              href="#booking" onClick={goToPage('home', '#booking')}>BOOK NOW</a>
+             onClick={goToPage('home', '#booking')}>BOOK NOW</a>
 
           </nav>
 
@@ -141,40 +196,52 @@ export default function App() {
 
         </section>
 
-        {page === 'home' && (
-          <section id="home">
-            <section id="notice">
-              <NoticeBoard />
-            </section>
-            <section>
-              <InstaFeed />
-            </section>
-            <section id="pricing">
-              {/* <Pricing /> */}
-            </section>
+        <div ref={stageRef}
+          className={`page-stage ${phase !== 'idle' ? 'page-stage--busy' : ''}`}
+          style={{ '--out-ms': `${OUT_MS}ms`, '--in-ms': `${IN_MS}ms` }}
+        >
+          <div className={`page-stage__inner page-stage__inner--${phase}`}>
+            {/* I'VE FINALLY FIGURED OUT HOW STATES WORK */}
+            {page === 'home' && (
+              <section id="home">
 
-            <section id="bio">
-              <Bio />
-            </section>
+                <section id="notice">
+                  <NoticeBoard />
+                </section>
 
-            <section id="booking">
-              <div className='row justify-content-center'>
-                <Col md={6}>
-
-                  <PriceModal />
-                </Col>
-
-                <Col md={6}>
-                  <BookingForm />
-                </Col>
-
-              </div>
-            </section>
-          </section>
-        )}
+                <section>
+                  <InstaFeed />
+                </section>
         
-        {page === 'artist' && <ArtistPage />}
 
+                <section id="bio">
+                  <Bio />
+                </section>
+
+                
+                  <div className='row justify-content-center'>
+                    <section id="pricing">
+                      <Col md={6}>
+                      
+
+                      <PriceModal />
+                    </Col>
+                    </section>
+<section id="booking">
+                    <Col md={6}>
+                      <BookingForm />
+                    </Col>
+</section>
+                  </div>
+                
+              </section>
+            )}
+
+            {page === 'artist' && (
+              <ArtistPage />
+              )}
+          </div>
+        </div>
         <Footer />
       </main>
 

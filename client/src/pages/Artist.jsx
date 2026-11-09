@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import titleFlourish from '../assets/titleFlourish.svg';
 import ArtistProfile from '/artistProfile.JPG';
+import '../App.css'
 import Navbar from "../components/navbarTail";
 
 // update this number when you add more artistPortfolio*.JPG o7
@@ -45,7 +46,7 @@ export default function PortfolioPage() {
     return (
         <section id="artist">
             <Container fluid>
-                <Navbar />
+                {/* <Navbar /> */}
                 <Row>
                     <Col md={4} className="profile-wrapper">
                         <div className="artist-profile">
