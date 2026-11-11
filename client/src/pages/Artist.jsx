@@ -86,7 +86,7 @@ It’s creativity, connection, self-expression and healing — all brought toget
                     </Col>
                 </Row>
 
-                {/* Artist Spotlight (Latest 3 Artwork) */}
+                
                 <Row className="recent-artwork">
                 <div className="recent-header">
                     <div className="title">
