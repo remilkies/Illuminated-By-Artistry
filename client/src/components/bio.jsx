@@ -42,7 +42,7 @@ export default function Bio() {
                         <p className="bio-body">At Illuminated By Artistry, body art is a journey of self-expression, connection, and healing. Whether you’re celebrating a new chapter, honouring a memory, or reclaiming your confidence, each piece is crafted in a safe, intentional space designed to help you feel beautiful, empowered, and truly at home in your skin. I feel deeply privileged to be entrusted with your story &lt;3 </p>
                     </div>
 
-                    <a href="../pages/Artist.jsx" className="iba-btn bio-btn"> Meet the Artist</a>
+                    <a className="iba-btn bio-btn" onClick={() => goToPage('artist')}> Meet the Artist</a>
                 </Col>
                 </Row>
                 </Container>
