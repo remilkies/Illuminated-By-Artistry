@@ -6,10 +6,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import titleFlourish from '../assets/titleFlourish.svg';
 import ArtistProfile from '/artistProfile.JPG';
 import '../App.css'
-import Navbar from "../components/navbarTail";
+import './Artist.css'
+import Footer from "../components/footer";
+// import Navbar from "../components/navbarTail";
 
 // update this number when you add more artistPortfolio*.JPG o7
-const TOTAL_ARTWORK_COUNT = 12; 
+const TOTAL_ARTWORK_COUNT = 40; 
 
 const PORTFOLIO_ALL = Array.from({ length: TOTAL_ARTWORK_COUNT }, (_, index) => {
     const id = index + 1;
@@ -86,11 +88,14 @@ It’s creativity, connection, self-expression and healing — all brought toget
 
                 {/* Artist Spotlight (Latest 3 Artwork) */}
                 <Row className="recent-artwork">
+                <div className="recent-header">
+                    <div className="title">
                     <img src={titleFlourish} alt="Title Flourish" className="title-flourish left" />
                     <h2>Artist Spotlight</h2>
                     <img src={titleFlourish} alt="Title Flourish" className="title-flourish" />
+                    </div>
                     <p>Latest Artwork</p>
-
+                    </div>
                     {RECENT_ARTWORK.map((item) => (
                         <Col md={4} key={item.id} className="recent-carousel">
                             <div className="portfolio-frame">
@@ -103,15 +108,15 @@ It’s creativity, connection, self-expression and healing — all brought toget
                 </Row>
 
                 {/* Full Artist Portfolio */}
-                <section id="portfolio">
-                    <div className="portfolio-title">
+                <section id="portfolio" className="portfolio-main-content">
+                    <div className="portfolio-title title">
                         <img src={titleFlourish} alt="Title Flourish" className="title-flourish left" />
                         <h2>Artist Portfolio</h2>
                         <img src={titleFlourish} alt="Title Flourish" className="title-flourish" />
-
-                        <Row className="mt-4">
+</div>
+                        <div className="portfolio-masonry">
                             {artwork.map((item, index) => (
-                                <Col md={3} key={item.id || index} className="artwork-wrapper mb-4">
+                                <div key={item.id || index} className="artwork-wrapper mb-4">
                                     <button
                                         type="button"
                                         onClick={() => setSelectedArtwork(item)}
@@ -125,12 +130,13 @@ It’s creativity, connection, self-expression and healing — all brought toget
                                             </div>
                                         </div>
                                     </button>
-                                </Col>
+                                </div>
                             ))}
-                        </Row>
+                       
                     </div>
 
                     {/* Lightbox Modal */}
+
                     {selectedArtwork && (
                         <div
                             className="lightbox-overlay"
@@ -154,8 +160,10 @@ It’s creativity, connection, self-expression and healing — all brought toget
                             />
                         </div>
                     )}
+                    
                 </section>
             </Container>
+            <Footer/>
         </section>
     );
 }

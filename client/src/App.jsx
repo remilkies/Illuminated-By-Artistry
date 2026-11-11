@@ -275,7 +275,7 @@ export default function App() {
                     </Col>
 
                   </Row>
-                
+                  <Footer />
               </section>
             )}
 
@@ -397,7 +397,7 @@ export default function App() {
               )}
           </div>
         </div>
-        <Footer />
+        
       </main>
 
     </div>

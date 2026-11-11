@@ -87,7 +87,7 @@
 
 .notice-title {
     /* margin-top: 8rem; */
-    color: #F6E3D4;
+    /* color: #F6E3D4; */
 
     font-family: "Playfair Display";
     /* title leash: never under 2rem, never over 5rem, otherwise 8% of screen width */
@@ -102,6 +102,11 @@
     align-items: center;
     /* the gap between the flourishes and the word shrinks too (0.5rem to 0.875rem) */
     gap: clamp(0.5rem, 1.5vw, 0.875rem);
+
+    background: linear-gradient(90deg, #DCB993 0%, #F6E3D4 50%, #DCB993 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 
 }
 

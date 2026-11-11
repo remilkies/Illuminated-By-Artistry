@@ -49,7 +49,7 @@ export default function InstaFeed() {
     return (
         <section className="insta-updates-container py-5 text-center">
 
-            <div className="insta-title">
+            <div className="insta-title title">
                 <img src={titleFlourish} alt="Title Flourish" className="title-flourish left" />
                 <h2>Active Promotions</h2>
                 <img src={titleFlourish} alt="Title Flourish" className="title-flourish" />
